@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/user")
     public UserDTO user(@ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
         User sessionUser = sessionUserOptional
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "No valid login"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         return new UserDTO(sessionUser.getUsername(), sessionUser.isAdmin());
     }
 }

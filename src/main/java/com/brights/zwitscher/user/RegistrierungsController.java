@@ -29,14 +29,16 @@ public class RegistrierungsController {
     public UserDTO registriereUser(@RequestBody UserRegistrierenDTO userZuRegistrieren, HttpServletResponse response){
 
         if (userRepository.findByUsername(userZuRegistrieren.getUsername()).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Benutzer existiert schon.");
         }
         if ( !userZuRegistrieren.getPassword().equals(userZuRegistrieren.getPasswordBestätigung())){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Your provided passwords are not equal");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Die gegebenen Passwörter sind nicht gleich.");
         }
 
         // mehrere User können die gleiche email Adresse haben
+
         User user = new User(userZuRegistrieren.getUsername(), userZuRegistrieren.getPassword(),userZuRegistrieren.getEmail());
+
         userRepository.save(user);
 
         Session session = new Session(user,Instant.now().plusSeconds(7*24*60*60));
