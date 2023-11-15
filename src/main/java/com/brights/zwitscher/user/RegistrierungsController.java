@@ -36,7 +36,7 @@ public class RegistrierungsController {
         }
 
         // mehrere User können die gleiche email Adresse haben
-        User user = new User(userZuRegistrieren.getUsername(), userZuRegistrieren.getPassword());
+        User user = new User(userZuRegistrieren.getUsername(), userZuRegistrieren.getPassword(), userZuRegistrieren.getEmail());
         userRepository.save(user);
 
         Session session = new Session(user,Instant.now().plusSeconds(7*24*60*60));
