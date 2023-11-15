@@ -54,9 +54,9 @@
 <template id="artikel-template">
     <div>
         {% for artikel in artikelListe %}
-        {{ artikel.titel }} von {{ load('user').username}} {{ artikel.erstelltAm }}<br>
+        {{ artikel.titel }} von {{ artikel.erstelltAm }}<br>
         {{ artikel.text }} <br>
-        {{ artikel.bild }} <br>
+        {{ artikel.url }} <br>
         <hr>
     </div>
     {% endfor %}
