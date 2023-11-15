@@ -6,18 +6,18 @@
 }
 
 .form-container label {
-    width: 150px; /* Breite der Label-Elemente anpassen */
+    width: 150px;
     margin: 5px;
 }
 
 .form-container input {
-    width: 100%; /* Fülle die verbleibende Breite aus */
-    box-sizing: border-box; /* Behalte Padding und Border in der Breite bei */
+    width: 100%;
+    box-sizing: border-box;
     margin: 5px;
 }
 
 #password-error {
-    margin-top: 5px; /* Füge etwas Abstand über dem Fehler hinzu */
+    margin-top: 5px;
 }
 
 h2 {
