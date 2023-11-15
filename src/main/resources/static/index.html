@@ -34,7 +34,7 @@
     <div class="form-container">
         <div class="login-box">
             <strong>Login</strong> <br>
-            <div style="background-color: #ff1eb0; padding: 5px">
+            <div style="background-color: #1e29ff; padding: 5px">
                 <form hx-post="http://localhost:8080/login"
                       nunjucks-template="login-successful"
                       hx-target=".form-container"
@@ -51,15 +51,6 @@
     </div>
 </template>
 
-<!-- These templates must not be nested in above template because it already would be interpolated as part of the GET user response -->
-<template id="login-template">
-    {% if error %}
-    <h3>⚠️ Error ⚠️</h3>
-    <code>{{ message }}</code>
-    {% else %}
-    <!-- If no error, register view disappears. User can proceed with login -->
-    {% endif %}
-</template>
 
 <template id="login-successful">
     {% if error %}

@@ -1,0 +1,40 @@
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container label {
+    width: 150px; /* Breite der Label-Elemente anpassen */
+    margin: 5px;
+}
+
+.form-container input {
+    width: 100%; /* Fülle die verbleibende Breite aus */
+    box-sizing: border-box; /* Behalte Padding und Border in der Breite bei */
+    margin: 5px;
+}
+
+#password-error {
+    margin-top: 5px; /* Füge etwas Abstand über dem Fehler hinzu */
+}
+
+h2 {
+    text-align: center;
+}
+
+.formcolor {
+    background-color: #c0a9bd ;
+    border: 1px solid ;
+    padding: 20px;
+}
+
+.center-button {
+    display: block;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #f4f2f3;
+}
