@@ -30,11 +30,10 @@
 <template id="main-template">
     {% include "templates/check-session-valid.html" %}
 
-    <h2>First Steps</h2>
+    <h2>Herzlich willkommen</h2>
     <div class="form-container">
         <div class="login-box">
-            <strong>Login</strong> <br>
-            <div style="background-color: #1e29ff; padding: 5px">
+            <div class="formcolor">
                 <form hx-post="http://localhost:8080/login"
                       nunjucks-template="login-successful"
                       hx-target=".form-container"
@@ -43,7 +42,9 @@
                     <input type="text" id="username" name="username" value="user1">
                     <label for="password">password</label>
                     <input type="password" id="password" name="password" value="12345">
-                    <button type="submit">Submit</button>
+                    <button class="center-button" type="submit">Einloggen</button>
+                    <br>
+                    <button class="center-button" onclick="window.location.href='http://localhost:8080/registrierung.html'">Noch kein Mitglied?</button>
                     <div id="error-box-login"></div>
                 </form>
             </div>
