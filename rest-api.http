@@ -1,11 +1,11 @@
 ### Register user
-POST http://localhost:8080/register
+POST http://localhost:8080/registriere
 Content-Type:application/json
 
 {
  "username": "adam",
- "password1": "12345",
- "password2": "12345"
+ "password": "12345",
+ "passwordBestätigung": "12345"
 }
 
 ### Login user
