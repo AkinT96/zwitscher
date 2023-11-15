@@ -1,23 +1,40 @@
+
 .form-container {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-.login-box {
-    background-color: rgba(14, 45, 51, 0.51);
+    flex-direction: column;
+    align-items: center;
 }
 
-label:before {
-    content: "\a";
-    white-space: pre;
+.form-container label {
+    width: 150px;
+    margin: 5px;
 }
 
-button {
-    display: block;
+.form-container input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+#password-error {
+    margin-top: 5px;
+}
+
+h2 {
     text-align: center;
 }
 
-.register-box {
-    background-color: #c890ee;
-    margin: 0 10px 0 10px;
+.formcolor {
+    background-color: #c0a9bd ;
+    border: 1px solid ;
+    padding: 20px;
+}
+
+.center-button {
+    display: block;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #f4f2f3;
 }
