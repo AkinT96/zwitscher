@@ -3,8 +3,10 @@
     flex-direction: column;
     align-items: center;
 }
-.blogposts div{
-    width : 100%;
+.posts {
+    width : 80%;
     margin : 5px;
     background-color: #c0a9bd;
+    justify-content: center;
+
 }
