@@ -5,7 +5,7 @@ Content-Type:application/json
 {
  "username": "adam",
  "password": "12345",
- "passwordBestätigung": "12345"
+ "passwordBestätigung": "123"
 }
 
 ### Login user
