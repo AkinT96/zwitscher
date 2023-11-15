@@ -29,7 +29,7 @@
     {% include "templates/check-session-invalid.html" %}
     {% include "templates/navbar.html" %}
 
-    <h1>Home - Welcome</h1>
+    <h1>Hallo hier siehst du die neuesten Posts:</h1>
 
     <p>Welcome, <strong>{{ username }}</strong></p>
 
@@ -43,11 +43,24 @@
     <div id="rank-result"></div>
 
     <hr>
-    <!-- TODO Needs to be implemented. Best is to copy 'home.html' and modify it to your needs. -->
-    <p> Checkout latest blog posts </p>
-    <a href="posts.html"><button>Click here 🌟</button></a>
-</template>
+    <!-- here the latest blogposts will be shown -->
+    <div class="blogartikel" id="artikel"
+         hx-get="http://localhost:8080/posts"
+         hx-target="#posts"
+         nunjucks-template="artikel-template">
+    </div>
 
+</template>
+<template id="artikel-template">
+    <div>
+        {% for artikel in artikelListe %}
+        {{ artikel.titel }} von {{ load('user').username}} {{ artikel.erstelltAm }}<br>
+        {{ artikel.text }} <br>
+        {{ artikel.bild }} <br>
+        <hr>
+    </div>
+    {% endfor %}
+</template>
 <template id="rank-result-template">
     Hey, {{load('user').username}}, you are the <strong>{{rank}}th</strong> user on this site.
 </template>
