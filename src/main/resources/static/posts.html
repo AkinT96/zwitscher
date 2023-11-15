@@ -35,19 +35,13 @@
 
     <hr>
     <!-- This is just an example to get you started (see also RankController in backend). -->
-    <p>🤨 Do you want to know how many user registered before you?</p>
-    <button
-            hx-get="http://localhost:8080/rank"
-            nunjucks-template="rank-result-template"
-            hx-target="#rank-result">👉 Click here</button>
-    <div id="rank-result"></div>
 
-    <hr>
     <!-- here the latest blogposts will be shown -->
-    <div class="blogartikel" id="artikel"
+    <button
          hx-get="http://localhost:8080/posts"
          hx-target="#posts"
-         nunjucks-template="artikel-template">
+         nunjucks-template="artikel-template">click </button>
+    <div id="posts">
     </div>
 
 </template>
