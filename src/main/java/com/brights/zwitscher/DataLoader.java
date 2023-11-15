@@ -24,11 +24,11 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
         // Create user
-        User user1= new User("user1","123456");
+        User user1= new User("user1","123456","jffjf");
         userRepository.save(user1);
 
         // Create admin
-        User user2= new User("admin","12345");
+        User user2= new User("admin","12345","JFJSDFJS");
         user2.setAdmin(true);
         userRepository.save(user2);
 
