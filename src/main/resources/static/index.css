@@ -4,7 +4,7 @@
     justify-content: flex-start;
 }
 .login-box {
-    background-color: lightgreen;
+    background-color: rgba(14, 45, 51, 0.51);
 }
 
 label:before {
