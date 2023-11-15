@@ -3,6 +3,7 @@ package com.brights.zwitscher.user;
 import com.brights.zwitscher.session.Session;
 import com.brights.zwitscher.session.SessionRepository;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class RegistrierungsController {
     }
 
     @PostMapping("/registriere")
-    public UserDTO registriereUser(@RequestBody UserRegistrierenDTO userZuRegistrieren){
+    public UserDTO registriereUser(@RequestBody UserRegistrierenDTO userZuRegistrieren, HttpServletResponse response){
 
         if (userRepository.findByUsername(userZuRegistrieren.getUsername()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
@@ -42,6 +43,7 @@ public class RegistrierungsController {
         sessionRepository.save(session);
 
         Cookie cookie = new Cookie("sessionId",session.getId() );
+        response.addCookie(cookie);
 
         return new UserDTO(user.getUsername(), user.isAdmin());
     }
