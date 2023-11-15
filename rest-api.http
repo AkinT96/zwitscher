@@ -1,3 +1,6 @@
+GET http://localhost:8080/posts
+
+
 ### Register user
 POST http://localhost:8080/registriere
 Content-Type:application/json
@@ -27,3 +30,5 @@ Content-Type:application/json
 
 ### Get current rank for user
 GET http://localhost:8080/rank
+
+###
