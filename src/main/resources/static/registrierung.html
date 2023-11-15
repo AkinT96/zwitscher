@@ -41,39 +41,25 @@
                       hx-target=".form-container"
                       hx-target-4*="#error-box-login">
 
-                    <label for="username">Username</label>
+                    <label for="username">Benutzername</label>
                     <input type="text" id="username" name="username">
 
-                    <label for="password">Password</label>
+                    <label for="password">Passwort</label>
                     <input type="password" id="password" name="password">
 
-                    <label for="passwordBestätigung">Repeat Password</label>
+                    <label for="passwordBestätigung">Passwort wiederholen</label>
                     <input type="password" id="passwordBestätigung" name="passwordBestätigung">
 
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email">
 
-                    {% if password != passwordcheck %}
-                    <p style="color: red;" id="password-error">Passwörter stimmen nicht überein. Bitte überprüfen Sie Ihre Eingaben.</p>
-                    {% endif %}
-
-                    <button class="center-button" type="submit">Submit</button>
+                    <button class="center-button" type="submit">Dabei sein!</button>
                     <div id="error-box-login"></div>
                 </form>
 
             </div>
         </div>
     </div>
-</template>
-
-<!-- Diese Templates dürfen nicht in das obige Template verschachtelt werden, da es bereits als Teil der GET-Benutzerantwort interpoliert würde -->
-<template id="login-template">
-    {% if error %}
-    <h3>⚠️ Error ⚠️</h3>
-    <code>{{ message }}</code>
-    {% else %}
-    <!-- Wenn kein Fehler, verschwindet die Registrierungsansicht. Der Benutzer kann mit dem Login fortfahren -->
-    {% endif %}
 </template>
 
 <template id="login-successful">
@@ -83,7 +69,7 @@
         <code>{{ message }}</code>
     </div>
     {% else %}
-    <p><strong>{{ username }}</strong>, erfolgreich eingeloggt ✅</p>
+    <p><strong>{{ username }}</strong>, erfolgreich registriert ✅</p>
 
     {# Nach 500 ms zum Startbildschirm umleiten #}
     {{redirect("home.html",500)}}
