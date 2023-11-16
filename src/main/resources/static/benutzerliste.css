@@ -19,17 +19,12 @@ a {
 
 .box-container {
     display: flex;
-    justify-content: space-between;
 }
 
 .box, .box-center {
-    width: 30%;
+    width: 10%;
     border-radius: 8px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.box:hover, .box-center:hover {
-    transform: scale(1.05);
+    background-color: #58765e;
 }
 
 .button {
@@ -45,21 +40,24 @@ a {
     cursor: pointer;
     display: block;
     margin: 0 auto;
-    transition: background-color 0.3s ease-in-out;
     outline: none;
 }
 
-.button:hover {
-    background-color: #58765e;
-}
+
 
 .box-center .button {
     background-color: #64766a;
 }
+label {
+    display: flex;
+    justify-content: center;
 
-.box-center .button:hover {
-    background-color: #58765e;
 }
+span {
+    display: flex;
+    justify-content: left;
+}
+
 .box-center {
     width: 30%;
     margin: 20px auto;
