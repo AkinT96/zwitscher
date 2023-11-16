@@ -1,8 +1,6 @@
 package com.brights.zwitscher.kommentare;
-
 import com.brights.zwitscher.artikel.Artikel;
 import com.brights.zwitscher.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 

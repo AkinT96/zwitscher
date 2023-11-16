@@ -1,4 +1,4 @@
-/*
+
 
 package com.brights.zwitscher;
 
@@ -71,4 +71,4 @@ public class DataLoader implements ApplicationRunner {
     }
 }
 
-*/
+

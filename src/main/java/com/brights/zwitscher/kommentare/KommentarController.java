@@ -1,8 +1,6 @@
 package com.brights.zwitscher.kommentare;
-
 import com.brights.zwitscher.artikel.Artikel;
 import com.brights.zwitscher.artikel.ArtikelRepository;
-
 import com.brights.zwitscher.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
