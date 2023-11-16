@@ -4,6 +4,9 @@
     <button hx-post="http://localhost:8080/logout"
             nunjucks-template="logout-triggered"
             hx-target="#logout" id="logout" style="background-color: #94a7ae; color: #ffffff; border: none; padding: 5px 10px; cursor: pointer;">Logout </button>
+    {% if  admin %}
+    ||   <a href="adminpanel.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Adminpanel</a>
+    {% endif %}
 </nav>
 
 <template id="logout-triggered">
