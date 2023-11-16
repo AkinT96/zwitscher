@@ -1,0 +1,8 @@
+.rounded-box {
+    width: 200px;
+    height: 200px;
+    background-color: #c0a9bd;
+    border-radius: 10px; /* Ändern Sie diesen Wert je nach gewünschtem Rundungsradius */
+    padding: 20px; /* Fügen Sie nach Bedarf Polsterung hinzu */
+    box-sizing: border-box;
+}
