@@ -20,8 +20,7 @@ public class ArtikelController {
 
     @GetMapping("/posts")
     public ArtikelListeDTO artikelausgeben() {
-        List<Artikel> artikelListe = artikelRepository.findAll();
-        Collections.reverse(artikelListe);
+        List<Artikel> artikelListe = artikelRepository.findAllByOrderByErstelltAmDesc();
         return new ArtikelListeDTO(artikelListe);
     }
 }

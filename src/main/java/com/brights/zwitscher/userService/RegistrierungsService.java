@@ -33,6 +33,11 @@ public class RegistrierungsService {
 
     public UserDTO registriereUser(@Validated UserRegistrierenDTO userZuRegistrieren,
                                    BindingResult bindingResult, HttpServletResponse response) {
+
+        if (!userZuRegistrieren.getPassword().equals(userZuRegistrieren.getPasswordBestätigung())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Die gegebenen Passwörter sind nicht gleich.");
+        }
+
         if (bindingResult.hasErrors()) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             List<String> errorMessages = new ArrayList<>();
@@ -48,10 +53,6 @@ public class RegistrierungsService {
 
         if (userRepository.findByUsername(userZuRegistrieren.getUsername()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Benutzer existiert schon.");
-        }
-
-        if (!userZuRegistrieren.getPassword().equals(userZuRegistrieren.getPasswordBestätigung())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Die gegebenen Passwörter sind nicht gleich.");
         }
 
         User user = new User(userZuRegistrieren.getUsername(), userZuRegistrieren.getPassword(), userZuRegistrieren.getEmail());
