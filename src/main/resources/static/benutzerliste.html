@@ -48,17 +48,17 @@
 </template>
 
 <template id="artikel-template">
-    <form hx-post="http://localhost:8080/dein-endpunkt" hx-vals="*">
-        {% for user in userListe %}
-        <label>
-            <span>{{ user.username }}</span>
-            <input type="checkbox" name="selectedUsers" value="{{ user.username }}">
-        </label>
-        <br>
-        {% endfor %}
-        <button class="button" type="submit">Daten senden</button>
+    {% for user in userListe %}
+    {{ user.username }}
+    <form hx-get="http://localhost:8080/setzeAlsAdmin">
+        <input type="hidden" id="unsichtbar" name="userId" value={{user.id}}>
+        <button type="submit">eingabe</button>
     </form>
+    <br>
+    {% endfor %}
 </template>
+
+
 
 
 </body>
