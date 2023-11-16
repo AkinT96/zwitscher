@@ -1,5 +1,4 @@
 package com.brights.zwitscher.kommentare;
-
 import java.util.List;
 
 public class KommentarListeDTO {

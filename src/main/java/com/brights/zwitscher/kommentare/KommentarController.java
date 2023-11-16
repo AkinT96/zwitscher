@@ -1,5 +1,4 @@
 package com.brights.zwitscher.kommentare;
-
 import com.brights.zwitscher.artikel.Artikel;
 import com.brights.zwitscher.artikel.ArtikelRepository;
 import com.brights.zwitscher.user.User;
