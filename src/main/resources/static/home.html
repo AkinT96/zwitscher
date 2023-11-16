@@ -13,6 +13,8 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
@@ -29,23 +31,25 @@
     {% include "templates/check-session-invalid.html" %}
     {% include "templates/navbar.html" %}
 
-    <h1>Home - Welcome</h1>
+    <h1>Home of stylish cars</h1>
 
     <p>Welcome, <strong>{{ username }}</strong></p>
 
     <hr>
     <!-- This is just an example to get you started (see also RankController in backend). -->
-    <p>🤨 Do you want to know how many user registered before you?</p>
-    <button
-            hx-get="http://localhost:8080/rank"
-            nunjucks-template="rank-result-template"
-            hx-target="#rank-result">👉 Click here</button>
-    <div id="rank-result"></div>
-
-    <hr>
     <!-- TODO Needs to be implemented. Best is to copy 'home.html' and modify it to your needs. -->
-    <p> Checkout latest blog posts </p>
-    <a href="posts.html"><button>Click here 🌟</button></a>
+    <div class="content-flex-container">
+        <h3>The latest 3 Posts </h3>
+        <img class="rounded-box" src="images/car1.jpg" alt="ein Auto">
+        <img class="rounded-box" src="images/car2.jpg" alt="ein Auto">
+        <img class="rounded-box" src="images/car3.jpg" alt="ein Auto">
+        <div class="posts">
+            <p> Checkout all blog posts </p>
+            <a href="posts.html"><button>Click here 🌟</button></a>
+        </div>
+    </div>
+
+
 </template>
 
 <template id="rank-result-template">

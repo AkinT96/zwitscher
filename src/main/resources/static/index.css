@@ -25,14 +25,30 @@ h2 {
 }
 
 .formcolor {
-    background-color: #c0a9bd ;
+    background-color: #64766a ;
     border: 1px solid ;
     padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto;
 }
 
 .center-button {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color:  #64766a;
+    color: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
     display: block;
     margin: 0 auto;
+    transition: background-color 0.3s ease-in-out;
+    border: 1px solid black;
+}
+.center-button:hover{
+    background-color: #58765e;
 }
 
 body {
