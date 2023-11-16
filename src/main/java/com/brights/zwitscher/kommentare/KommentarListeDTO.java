@@ -1,5 +1,3 @@
-package com.brights.zwitscher.kommentare;
-
 import com.brights.zwitscher.kommentare.Kommentar;
 
 import java.util.List;

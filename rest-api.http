@@ -35,4 +35,31 @@ Content-Type:application/json
 ### Get current rank for user
 GET http://localhost:8080/rank
 
-###
+### Füge einen Kommentar zu einem Artikel hinzu
+POST http://localhost:8080/pluskommentar
+Content-Type: application/json
+
+{
+  "id": 1,
+  "text": "Kommentar 1",
+  "user": {
+    "id": 1,
+    "username": "user1",
+    "email": null,
+    "admin": false
+  },
+  "artikel": {
+    "id": 1,
+    "user": {
+      "id": 1,
+      "username": "user1",
+      "email": null,
+      "admin": false
+    },
+    "titel": "was geht",
+    "text": "hey",
+    "url": "hdhhdah",
+    "erstelltAm": "2023-11-16T11:05:14.090036"
+  },
+  "erstelltAm": "2023-11-16T11:05:14.092034"
+}
