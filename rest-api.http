@@ -12,16 +12,7 @@ Content-Type:application/json
   "email": "abd@def.de"
 }
 
-### Register second user
-POST http://localhost:8080/registriere
-Content-Type:application/json
 
-{
-"username": "eva",
-"password": "123456",
-"passwordBestätigung": "123456",
-"email": "abd@def.de"
-}
 ###Setze als Admin
 GET http://localhost:8080/setzealsadmin/3
 
@@ -77,3 +68,17 @@ Content-Type: application/json
   },
   "erstelltAm": "2023-11-16T11:05:14.092034"
 }
+
+### Register second user
+POST http://localhost:8080/registriere
+Content-Type:application/json
+
+{
+  "username": "eva",
+  "password": "123456",
+  "passwordBestätigung": "123456",
+  "email": "abd@def.de"
+}
+
+### Lösche Artikel
+DELETE http://localhost:8080/lösche/artikel/2
