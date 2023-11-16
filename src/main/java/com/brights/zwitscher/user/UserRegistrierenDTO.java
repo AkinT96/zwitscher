@@ -1,8 +1,9 @@
 package com.brights.zwitscher.user;
-import jakarta.validation.constraints.Email;
+
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+
 public class UserRegistrierenDTO {
 
     @NotEmpty(message = "Der Benutzername darf nicht leer sein.")
@@ -14,7 +15,8 @@ public class UserRegistrierenDTO {
     private String password;
 
     @NotEmpty(message = "Die Passwortbestätigung darf nicht leer sein.")
-    @Size(min = 6, message = "Die Passwortbestätigung muss mindestens 6 Zeichen lang sein.")
+
+    @Size(min = 6, message = "")
     private String passwordBestätigung;
 
     @NotEmpty(message = "Die E-Mail-Adresse darf nicht leer sein.")
