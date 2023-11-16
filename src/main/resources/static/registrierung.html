@@ -15,6 +15,8 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="registrierung.css">
+
 </head>
 <body>
 
@@ -30,28 +32,35 @@
 <template id="main-template">
     {% include "templates/check-session-valid.html" %}
 
-    <h2>Herzlich willkommen</h2>
+    <h2>Werde ein Teil der Community!</h2>
     <div class="form-container">
         <div class="login-box">
             <div class="formcolor">
-                <form hx-post="http://localhost:8080/login"
+                <form hx-post="http://localhost:8080/registriere"
                       nunjucks-template="login-successful"
                       hx-target=".form-container"
                       hx-target-4*="#error-box-login">
+
                     <label for="username">Benutzername</label>
-                    <input type="text" id="username" name="username" value="user1">
+                    <input type="text" id="username" name="username">
+
                     <label for="password">Passwort</label>
-                    <input type="password" id="password" name="password" value="12345">
-                    <button class="center-button" type="submit">Einloggen</button>
-                    <br>
-                    <button class="center-button" onclick="window.location.href='http://localhost:8080/registrierung.html'">Noch kein Mitglied?</button>
+                    <input type="password" id="password" name="password">
+
+                    <label for="passwordBestätigung">Passwort wiederholen</label>
+                    <input type="password" id="passwordBestätigung" name="passwordBestätigung">
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+
+                    <button class="center-button" type="submit">Dabei sein!</button>
                     <div id="error-box-login"></div>
                 </form>
+
             </div>
         </div>
     </div>
 </template>
-
 
 <template id="login-successful">
     {% if error %}
@@ -60,11 +69,14 @@
         <code>{{ message }}</code>
     </div>
     {% else %}
-    <p><strong>{{ username }}</strong>, successfully logged in ✅</p>
+    <p><strong>{{ username }}</strong>, erfolgreich registriert ✅</p>
 
-    {# Redirect to home after 500ms #}
+    {# Nach 500 ms zum Startbildschirm umleiten #}
     {{redirect("home.html",500)}}
     {% endif %}
 </template>
+
 </body>
+
+
 </html>

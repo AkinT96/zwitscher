@@ -36,7 +36,5 @@ h2 {
 }
 
 body {
-    background-image: url('hintergrund.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;}
+    background-color: #f4f2f3;
+}

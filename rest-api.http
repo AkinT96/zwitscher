@@ -1,12 +1,19 @@
+GET http://localhost:8080/posts
+
+
 ### Register user
-POST http://localhost:8080/register
+POST http://localhost:8080/registriere
 Content-Type:application/json
 
 {
- "username": "adam",
- "password1": "12345",
- "password2": "12345"
+  "username": "adam",
+  "password": "12345",
+  "passwordBestätigung": "123"
 }
+
+### Get Kommentare
+GET http://localhost:8080/kommentare/1
+
 
 ### Login user
 POST http://localhost:8080/login
@@ -27,3 +34,5 @@ Content-Type:application/json
 
 ### Get current rank for user
 GET http://localhost:8080/rank
+
+###
