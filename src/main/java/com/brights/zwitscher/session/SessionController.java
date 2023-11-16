@@ -1,6 +1,7 @@
 package com.brights.zwitscher.session;
 
 import com.brights.zwitscher.user.User;
+import com.brights.zwitscher.user.UserDTO;
 import com.brights.zwitscher.user.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,7 +26,7 @@ public class SessionController {
     }
 
     @PostMapping("/login")
-    public LoginResponseDTO login(@RequestBody LoginRequestDTO login, HttpServletResponse response) {
+    public UserDTO login(@RequestBody LoginRequestDTO login, HttpServletResponse response) {
         Optional<User> userOptional = userRepository.findByUsernameAndPassword(login.getUsername(), login.getPassword());
 
         if (userOptional.isPresent()) {
@@ -37,8 +38,9 @@ public class SessionController {
             Cookie cookie = new Cookie("sessionId", session.getId());
             response.addCookie(cookie);
 
+
             // Login successful
-            return new LoginResponseDTO(login.getUsername());
+            return new UserDTO(login.getUsername(),userOptional.get().isAdmin());
         }
 
         // When login-does not work
