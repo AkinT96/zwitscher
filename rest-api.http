@@ -7,9 +7,23 @@ Content-Type:application/json
 
 {
   "username": "adam",
-  "password": "12345",
-  "passwordBestätigung": "123"
+  "password": "123456",
+  "passwordBestätigung": "123456",
+  "email": "abd@def.de"
 }
+
+### Register second user
+POST http://localhost:8080/registriere
+Content-Type:application/json
+
+{
+"username": "eva",
+"password": "123456",
+"passwordBestätigung": "123456",
+"email": "abd@def.de"
+}
+###Setze als Admin
+GET http://localhost:8080/setzealsadmin/3
 
 ### Get Kommentare
 GET http://localhost:8080/kommentare/1
