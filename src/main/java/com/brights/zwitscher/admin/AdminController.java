@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -30,8 +33,10 @@ public class AdminController {
     public User alsAdminSetzen(@PathVariable Long userId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional){
         User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         if (!user.isAdmin()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du bist kein Admin");
+
         User userAlsAdmin = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "Der Benutzername existiert nicht."));
         userAlsAdmin.setAdmin(true);
         return userRepository.save(userAlsAdmin);
           }
+
 }
