@@ -16,14 +16,11 @@ p {
 .box-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
 }
 
 .box, .box-center {
     width: 30%;
-    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
 }
 
@@ -37,7 +34,7 @@ p {
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    background-color: #4CAF50;
+    background-color:  #64766a;
     color: #FFFFFF;
     border: none;
     border-radius: 5px;
@@ -45,18 +42,19 @@ p {
     display: block;
     margin: 0 auto;
     transition: background-color 0.3s ease-in-out;
+    outline: none;
 }
 
 .button:hover {
-    background-color: #45a049;
+    background-color: #58765e;
 }
 
 .box-center .button {
-    background-color: #3498db;
+    background-color: #64766a;
 }
 
 .box-center .button:hover {
-    background-color: #2980b9;
+    background-color: #58765e;
 }
 .box-center {
     width: 30%;
