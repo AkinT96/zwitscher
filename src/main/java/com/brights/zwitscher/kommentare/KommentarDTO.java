@@ -1,5 +1,6 @@
-package com.brights.zwitscher.artikel;
+package com.brights.zwitscher.kommentare;
 
+import com.brights.zwitscher.artikel.Artikel;
 import com.brights.zwitscher.user.User;
 
 public class KommentarDTO {

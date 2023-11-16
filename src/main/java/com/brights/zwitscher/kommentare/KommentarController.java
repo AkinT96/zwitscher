@@ -1,7 +1,8 @@
-package com.brights.zwitscher.artikel;
+package com.brights.zwitscher.kommentare;
 
+import com.brights.zwitscher.artikel.Artikel;
+import com.brights.zwitscher.artikel.ArtikelRepository;
 import com.brights.zwitscher.user.User;
-import com.brights.zwitscher.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

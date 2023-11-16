@@ -1,4 +1,4 @@
-package com.brights.zwitscher.artikel;
+package com.brights.zwitscher.kommentare;
 
 import java.util.List;
 
