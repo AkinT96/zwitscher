@@ -4,6 +4,13 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    font-family: 'Arial', sans-serif;
+}
+
+p {
+    color: #222222;
+    font-size: x-large;
+    text-align: center;
 }
 
 .box-container {
@@ -12,23 +19,48 @@ body {
     margin-top: 20px;
 }
 
-.box {
+.box, .box-center {
     width: 30%;
-    background-color: #c0a9bd;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.box:hover, .box-center:hover {
+    transform: scale(1.05);
 }
 
 .button {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: 15px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    background-color: #4caf50;
-    color: white;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.3s ease-in-out;
 }
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.box-center .button {
+    background-color: #3498db;
+}
+
+.box-center .button:hover {
+    background-color: #2980b9;
+}
+.box-center {
+    width: 30%;
+    margin: 20px auto;
+    text-align: center;
+}
+
