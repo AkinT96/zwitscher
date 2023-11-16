@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
@@ -37,11 +38,18 @@
     <hr>
     <!-- This is just an example to get you started (see also RankController in backend). -->
     <!-- TODO Needs to be implemented. Best is to copy 'home.html' and modify it to your needs. -->
-    <div class="rounded-box"><img src="/images/"</div>
-    <div class="rounded-box"></div>
-    <div class="rounded-box"></div>
-    <p> Checkout latest blog posts </p>
-    <a href="posts.html"><button>Click here 🌟</button></a>
+    <div class="content-flex-container">
+        <h3>The latest 3 Posts </h3>
+        <img class="rounded-box" src="images/car1.jpg" alt="ein Auto">
+        <img class="rounded-box" src="images/car2.jpg" alt="ein Auto">
+        <img class="rounded-box" src="images/car3.jpg" alt="ein Auto">
+        <div class="posts">
+            <p> Checkout all blog posts </p>
+            <a href="posts.html"><button>Click here 🌟</button></a>
+        </div>
+    </div>
+
+
 </template>
 
 <template id="rank-result-template">
