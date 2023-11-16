@@ -4,8 +4,8 @@ package com.brights.zwitscher;
 
 import com.brights.zwitscher.artikel.Artikel;
 import com.brights.zwitscher.artikel.ArtikelRepository;
-import com.brights.zwitscher.artikel.KommentarRepository;
-import com.brights.zwitscher.artikel.Kommentar;
+import com.brights.zwitscher.kommentare.KommentarRepository;
+import com.brights.zwitscher.kommentare.Kommentar;
 import com.brights.zwitscher.user.User;
 import com.brights.zwitscher.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
