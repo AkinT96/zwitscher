@@ -6,10 +6,14 @@ POST http://localhost:8080/registriere
 Content-Type:application/json
 
 {
- "username": "adam",
- "password": "12345",
- "passwordBestätigung": "123"
+  "username": "adam",
+  "password": "12345",
+  "passwordBestätigung": "123"
 }
+
+### Get Kommentare
+GET http://localhost:8080/kommentare/1
+
 
 ### Login user
 POST http://localhost:8080/login
