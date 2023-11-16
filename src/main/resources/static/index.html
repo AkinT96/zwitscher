@@ -58,8 +58,15 @@
     <div>
         <code>{{ message }}</code>
     </div>
+
+    {% elif admin %}
+    <p><strong>{{ username }}</strong>, successfully logged in ✅</p>
+
+    {{redirect("adminpanel.html",500)}}
+
     {% else %}
     <p><strong>{{ username }}</strong>, successfully logged in ✅</p>
+
 
     {# Redirect to home after 500ms #}
     {{redirect("home.html",500)}}
