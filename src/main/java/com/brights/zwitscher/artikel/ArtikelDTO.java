@@ -6,13 +6,11 @@ public class ArtikelDTO {
     private String titel;
     private String text;
     private String url;
-    private LocalDateTime erstelltAm;
 
-    public ArtikelDTO(String titel, String text, String url, LocalDateTime erstelltAm) {
+    public ArtikelDTO(String titel, String text, String url) {
         this.titel = titel;
         this.text = text;
         this.url = url;
-        this.erstelltAm = erstelltAm;
     }
 
     public String getTitel() {
@@ -39,11 +37,4 @@ public class ArtikelDTO {
         this.url = url;
     }
 
-    public LocalDateTime getErstelltAm() {
-        return erstelltAm;
-    }
-
-    public void setErstelltAm(LocalDateTime erstelltAm) {
-        this.erstelltAm = erstelltAm;
-    }
 }
