@@ -19,7 +19,7 @@ public class Kommentar {
     private User user;
 
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
     private Artikel artikel;
 
     @CreationTimestamp

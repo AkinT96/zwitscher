@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface KommentarRepository extends CrudRepository<Kommentar, Long> {
-    List<Kommentar> findKommentarsByArtikel(Optional<Artikel> artikel);
+    List<Kommentar> findByArtikelOrderByErstelltAmAsc(Optional<Artikel> artikel);
 }
