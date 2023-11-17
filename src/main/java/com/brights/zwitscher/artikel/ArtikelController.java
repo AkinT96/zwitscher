@@ -22,21 +22,20 @@ public class ArtikelController {
         this.artikelRepository = artikelRepository;
         this.userRepository = userRepository;
     }
-
+    @GetMapping("/artikel/{artikelId}")
+    public Artikel artikelAusgeben(@PathVariable Long artikelId){
+        return artikelRepository.findById(artikelId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Artikel nicht gefunden"));
+    }
     @GetMapping("/artikelliste")
-    public ArtikelListeDTO artikelAusgeben() {
+    public ArtikelListeDTO artikelListeAusgeben() {
         List<Artikel> artikelListe = artikelRepository.findAllByOrderByErstelltAmDesc();
         return new ArtikelListeDTO(artikelListe);
     }
 
     @PostMapping("/artikel")
     public Artikel artikelErstellen(@RequestBody ArtikelDTO artikelDTO, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
-
-
         User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
-
         if (!user.isAdmin()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du bist kein Admin");
-
         else {
             Artikel artikel = new Artikel();
             artikel.setUser(user);
