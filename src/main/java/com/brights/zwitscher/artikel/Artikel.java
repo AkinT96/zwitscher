@@ -19,9 +19,9 @@ public class Artikel {
     private User user;
 
     private String titel;
-
+    @Column(columnDefinition="TEXT")
     private String text;
-
+    @Column(columnDefinition="TEXT")
     private String url;
     @OneToMany(mappedBy="artikel", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Kommentar> kommentare;

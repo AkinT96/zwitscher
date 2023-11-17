@@ -85,3 +85,13 @@ DELETE http://localhost:8080/artikel/2
 
 ### Lösche Kommentar
 DELETE http://localhost:8080/kommentar/3
+
+### Artikel bearbeiten
+PUT http://localhost:8080/artikel/1
+Content-Type: application/json
+
+{
+  "titel": "Hallo, das ist der Titel",
+  "text": "Das ist der allgemeine Text den ich hier eingebe....",
+  "url": "https://www.bing.com/images/search?view=detailV2&ccid=m2YHO%2bTb&id=C57C06CA4DB0DF44E9E1931A15356BD89AE71AA7&thid=OIP.m2YHO-Tb_zldEHL6zJzIOgHaE8&mediaurl=https%3a%2f%2fheise.cloudimg.io%2fwidth%2f1260%2fq30.png-lossy-30.webp-lossy-30.foil1%2f_www-heise-de_%2fautos%2fimgs%2f14%2f7%2f7%2f9%2f0%2f1%2f7%2f58abf75659c8dd2c.jpeg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.9b66073be4dbff395d1072facc9cc83a%3frik%3dpxrnmthrNRUakw%26pid%3dImgRaw%26r%3d0&exph=420&expw=630&q=+klein+auto++bild+groesse++200+x+200&simid=608028766801578324&FORM=IRPRST&ck=1C6FF2437B94EE862C6B76FB1620C8E4&selectedIndex=9"
+}
