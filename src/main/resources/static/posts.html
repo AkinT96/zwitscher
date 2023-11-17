@@ -19,7 +19,7 @@
 <body>
 <div hx-ext="client-side-templates,response-targets,json-enc"
      hx-trigger="load"
-     hx-get="http://localhost:8080/user"
+     hx-get="http://localhost:8080/benutzer"
      nunjucks-template="main-template"
      hx-target-4*="#main"
      hx-target="#main"
@@ -39,7 +39,7 @@
 
   <!-- here the latest blogposts will be shown -->
   <div class=blogposts id="posts"
-       hx-get="http://localhost:8080/posts"
+       hx-get="http://localhost:8080/artikelliste"
        hx-target="#posts"
        hx-trigger="load"
        nunjucks-template="artikel-template">click

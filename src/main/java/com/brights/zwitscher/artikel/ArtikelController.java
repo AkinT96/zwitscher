@@ -23,14 +23,14 @@ public class ArtikelController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/posts")
-    public ArtikelListeDTO artikelausgeben() {
+    @GetMapping("/artikelliste")
+    public ArtikelListeDTO artikelAusgeben() {
         List<Artikel> artikelListe = artikelRepository.findAllByOrderByErstelltAmDesc();
         return new ArtikelListeDTO(artikelListe);
     }
 
-    @PostMapping("/posterstellen")
-    public Artikel artikelerstellen(@RequestBody ArtikelDTO artikelDTO, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
+    @PostMapping("/artikel")
+    public Artikel artikelErstellen(@RequestBody ArtikelDTO artikelDTO, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
 
 
         User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
@@ -46,5 +46,19 @@ public class ArtikelController {
             return artikelRepository.save(artikel);
 
         }
+    }
+
+    @PutMapping("/artikel/{artikelId}")
+    public Artikel artikelBearbeiten(@RequestBody ArtikelDTO artikelDTO, @PathVariable Long artikelId,
+                                     @ModelAttribute("sessionUser") Optional<User> sessionUserOptional){
+        User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
+        if (!user.isAdmin()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du bist kein Admin");
+        Artikel artikel = artikelRepository.findById(artikelId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Artikel existiert nicht"));
+        artikel.setText(artikelDTO.getText());
+        artikel.setTitel(artikelDTO.getTitel());
+        artikel.setUrl(artikelDTO.getUrl());
+        return artikelRepository.save(artikel);
+
     }
 }
