@@ -37,6 +37,8 @@ public class AdminController {
         User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         if (!user.isAdmin()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du bist kein Admin");
         User userAlsAdmin = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "Der Benutzername existiert nicht."));
+
+        User userAlsAdmin = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Benutzername existiert nicht."));
         userAlsAdmin.setAdmin(true);
         return userRepository.save(userAlsAdmin);
     }
@@ -54,5 +56,6 @@ public class AdminController {
         response.setStatus(HttpServletResponse.SC_NO_CONTENT); // status code 204, best practice
 
     }
+
 
 }
