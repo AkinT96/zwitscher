@@ -14,9 +14,13 @@
   <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
   <script src="templates/javascript-helpers.js"></script>
   <link rel="stylesheet" href="posts.css">
+
 </head>
 
 <body>
+  <div id="headerBild">
+    <img src="../static/images/auto_show_banner.jpg" alt="Eine bewölkte Straße">
+  </div>
 <div hx-ext="client-side-templates,response-targets,json-enc"
      hx-trigger="load"
      hx-get="http://localhost:8080/benutzer"
