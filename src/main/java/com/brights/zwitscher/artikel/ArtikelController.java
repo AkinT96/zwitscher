@@ -23,13 +23,13 @@ public class ArtikelController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/artikelliste")
     public ArtikelListeDTO artikelausgeben() {
         List<Artikel> artikelListe = artikelRepository.findAllByOrderByErstelltAmDesc();
         return new ArtikelListeDTO(artikelListe);
     }
 
-    @PostMapping("/posterstellen")
+    @PostMapping("/artikel")
     public Artikel artikelerstellen(@RequestBody ArtikelDTO artikelDTO, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
 
 

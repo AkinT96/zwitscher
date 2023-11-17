@@ -36,14 +36,12 @@ public class AdminController {
     public User alsAdminSetzen(@RequestBody UserIdDTO userIdDTO, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional){
         User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         if (!user.isAdmin()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du bist kein Admin");
-        User userAlsAdmin = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "Der Benutzername existiert nicht."));
-
-        User userAlsAdmin = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Benutzername existiert nicht."));
+        User userAlsAdmin = userRepository.findById(userIdDTO.getUserId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Benutzername existiert nicht."));
         userAlsAdmin.setAdmin(true);
         return userRepository.save(userAlsAdmin);
     }
     // TODO check cascading when i delete the artikel, the comments should be removed too
-    @DeleteMapping("/lösche/artikel/{artikelId}")
+    @DeleteMapping("/artikel/{artikelId}")
     public void artikelLöschen (@PathVariable Long artikelId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional,
                                 HttpServletResponse response){
 

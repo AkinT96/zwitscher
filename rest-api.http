@@ -1,4 +1,4 @@
-GET http://localhost:8080/posts
+GET http://localhost:8080/artikelliste
 
 
 ### Register user
@@ -81,4 +81,7 @@ Content-Type:application/json
 }
 
 ### Lösche Artikel
-DELETE http://localhost:8080/lösche/artikel/2
+DELETE http://localhost:8080/artikel/2
+
+### Lösche Kommentar
+DELETE http://localhost:8080/kommentar/3
