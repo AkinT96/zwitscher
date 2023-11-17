@@ -5,6 +5,7 @@ import com.brights.zwitscher.artikel.ArtikelRepository;
 import com.brights.zwitscher.kommentare.KommentarRepository;
 import com.brights.zwitscher.user.User;
 import com.brights.zwitscher.user.UserDTO;
+import com.brights.zwitscher.user.UserIdDTO;
 import com.brights.zwitscher.user.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -28,10 +32,11 @@ public class AdminController {
         this.kommentarRepository = kommentarRepository;
     }
 
-    @GetMapping("/setzealsadmin/{userId}")
-    public User alsAdminSetzen(@PathVariable Long userId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional){
+    @PostMapping("/setzeAlsAdmin")
+    public User alsAdminSetzen(@RequestBody UserIdDTO userIdDTO, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional){
         User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         if (!user.isAdmin()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du bist kein Admin");
+
         User userAlsAdmin = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Benutzername existiert nicht."));
         userAlsAdmin.setAdmin(true);
         return userRepository.save(userAlsAdmin);
@@ -50,5 +55,6 @@ public class AdminController {
         response.setStatus(HttpServletResponse.SC_NO_CONTENT); // status code 204, best practice
 
     }
+
 
 }

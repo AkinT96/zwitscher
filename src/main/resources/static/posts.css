@@ -5,8 +5,38 @@
 }
 .posts {
     width : 80%;
-    margin : 5px;
+    border: 1px solid blue;
+    border-radius: 10px;
+    margin : 20px;
+    padding: 10px;
     background-color: #c0a9bd;
     justify-content: center;
+}
 
+.bild {
+    width: 100%;
+}
+.post-inhalt {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    background-color: gainsboro;
+    justify-content: center;
+  //  align-items: center;
+}
+
+.titelBox {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.titel {
+    font-weight: bold;
+}
+
+.datum {
+    align-self: flex-end;
+    color: #888;
+    font-size: 12px;
 }
