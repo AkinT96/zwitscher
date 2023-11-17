@@ -1,10 +1,12 @@
 package com.brights.zwitscher.artikel;
 
+import com.brights.zwitscher.kommentare.Kommentar;
 import com.brights.zwitscher.user.User;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -21,7 +23,8 @@ public class Artikel {
     private String text;
 
     private String url;
-
+    @OneToMany(mappedBy="artikel", cascade = CascadeType.REMOVE)
+    private List<Kommentar> kommentare;
     @CreationTimestamp
     @Column(name ="erstelltAm", nullable = false,updatable = false)
     private LocalDateTime erstelltAm;
