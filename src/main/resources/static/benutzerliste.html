@@ -13,7 +13,7 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
-    <link rel="stylesheet" href="benutzerliste.css">
+    <link rel="stylesheet" href="posts.css">
 </head>
 
 <body>
@@ -29,37 +29,37 @@
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
     {% include "templates/navbar.html" %}
-    {% include "templates/check-isAdmin.html" %}
 
     <h1>Hallo hier siehst du die neuesten Posts:</h1>
 
     <p>Welcome, <strong>{{ username }}</strong></p>
 
     <hr>
-<div class="box-container">
-    <div class=box-center id="posts"
+
+    <div class=blogposts id="posts"
          hx-get="http://localhost:8080/benutzer"
          hx-target="#posts"
          hx-trigger="load"
-         nunjucks-template="artikel-template">click </div>
-
-
-</div>
+         nunjucks-template="artikel-template">
+    </div>
 </template>
+
 
 <template id="artikel-template">
     {% for user in userListe %}
-    {{ user.username }}
-    <form hx-get="http://localhost:8080/setzeAlsAdmin">
-        <input type="hidden" id="unsichtbar" name="userId" value={{user.id}}>
-        <button type="submit">eingabe</button>
-    </form>
-    <br>
+    <div id="user-{{user.username}}">
+  {% set username = user.username %}
+  {% set admin = user.admin %}
+  {% set userid = user.id %}
+  {% include "/templates/user-view.html" %}
+    </div>
     {% endfor %}
 </template>
+<template id="user-template">
 
+    {% include "/templates/user-view.html" %}
 
-
-
+</template>
 </body>
 </html>
+
