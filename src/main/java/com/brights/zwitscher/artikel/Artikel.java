@@ -23,7 +23,7 @@ public class Artikel {
     private String text;
 
     private String url;
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy="artikel", cascade = CascadeType.REMOVE)
     private List<Kommentar> kommentare;
     @CreationTimestamp
     @Column(name ="erstelltAm", nullable = false,updatable = false)
