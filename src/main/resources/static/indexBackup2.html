@@ -16,7 +16,7 @@
   <script src="templates/javascript-helpers.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <link rel="stylesheet" href="indexBackup.css">
+  <link rel="stylesheet" href="indexBackup2.css">
 </head>
 <body>
 
@@ -33,6 +33,9 @@
   {% include "templates/check-session-valid.html" %}
 
   <header>
+    <div id="logoBild">
+    <img src="../static/images/logo.svg" alt="Logo Lenkrad">
+    </div>
     <h2 class="logo">Logo</h2>
     <nav class="navigation">
       <a href="#">Start</a>
@@ -42,7 +45,7 @@
       <button class="btnNavLogin">Login</button>
     </nav>
   </header>
-  
+
   <div class="wrapper">
     <span class="boxSchließen">
       <ion-icon name="close-outline"></ion-icon>
@@ -72,6 +75,39 @@
         <div class="loginRegister">
           <p>Noch kein Konto?
             <a href="#" class="registrierenLink">Registrieren</a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <div class="formBoxRegister">
+      <h2>Registration</h2>
+      <form action="#">
+        <div class="inputBox">
+          <span class="icon">
+            <ion-icon name="person-outline"></ion-icon>
+          </span>
+          <input type="text" required>
+          <label>Benutzername</label>
+        </div>
+        <div class="inputBox">
+          <span class="icon">
+            <ion-icon name="mail-outline"></ion-icon>
+          </span>
+          <input type="email" required>
+          <label>Email</label>
+        </div>
+        <div class="inputBox">
+          <span class="icon">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </span>
+          <input type="password" required>
+          <label>Passwort</label>
+        </div>
+        <button type="submit" class="btn">Registrieren</button>
+        <div class="loginRegister">
+          <p>Du besitzt beireits ein Konto?
+            <a href="#" class="loginLink">Einloggen</a>
           </p>
         </div>
       </form>
