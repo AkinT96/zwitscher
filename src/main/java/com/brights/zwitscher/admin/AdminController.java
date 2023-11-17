@@ -28,18 +28,24 @@ public class AdminController {
     public AdminController(ArtikelRepository artikelRepository, UserRepository userRepository,
                            KommentarRepository kommentarRepository){
         this.artikelRepository = artikelRepository;
+
         this.userRepository = userRepository;
         this.kommentarRepository = kommentarRepository;
     }
-
-    @PostMapping("/setzeAlsAdmin")
-    public User alsAdminSetzen(@RequestBody UserIdDTO userIdDTO, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional){
+    @PatchMapping("/setzeAlsAdmin/{userId}")
+    public User alsAdminSetzen(@PathVariable Long userId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional){
         User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         if (!user.isAdmin()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du bist kein Admin");
-        User userAlsAdmin = userRepository.findById(userIdDTO.getUserId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Benutzername existiert nicht."));
-        userAlsAdmin.setAdmin(true);
+
+
+        User userAlsAdmin = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Benutzername existiert nicht."));
+
+         userAlsAdmin.setAdmin(!userAlsAdmin.isAdmin());
+
         return userRepository.save(userAlsAdmin);
     }
+
+
     // TODO check cascading when i delete the artikel, the comments should be removed too
     @DeleteMapping("/artikel/{artikelId}")
     public void artikelLöschen (@PathVariable Long artikelId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional,
