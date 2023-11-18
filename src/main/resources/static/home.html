@@ -30,9 +30,29 @@
 
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
-    {% include "templates/navbar.html" %}
 
-    <h1>Home of stylish cars</h1>
+    <header>
+        <nav class="navigation">
+            <a href="http://localhost:8080/home.html">Home</a>
+
+            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
+                    nunjucks-template="logout-triggered"
+                    hx-target="#logout" id="logout">Logout </button>
+            <a href="http://localhost:8080/homeAlt.html">FI</a>
+        </nav>
+        {% if  admin %}
+        <a href="http://localhost:8080/adminpanel.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Adminpanel</a>
+        {% endif %}
+
+        <template id="logout-triggered">
+            <span>Tschüss {{ username }}</span>
+            {{ redirect("index.html", 500) }}
+        </template>
+    </header>
+
+
+
+    <h1>Das Zuhause der Autoliebhaber</h1>
 
     <p>Willkommen, <strong>{{ username }}</strong></p>
 
