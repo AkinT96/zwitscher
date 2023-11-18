@@ -14,7 +14,6 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
     <link rel="stylesheet" href="posts.css">
-    <link rel="stylesheet" href="indexBackup.css">
 </head>
 
 <body>
@@ -46,11 +45,9 @@
 </template>
 
 
-
 <template id="artikel-template">
     {% for user in userListe %}
     <div id="user-{{user.username}}">
-
   {% set username = user.username %}
   {% set admin = user.admin %}
   {% set userid = user.id %}
@@ -59,7 +56,6 @@
     {% endfor %}
 </template>
 <template id="user-template">
-
 
     {% include "/templates/user-view.html" %}
 
