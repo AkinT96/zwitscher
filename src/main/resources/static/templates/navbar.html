@@ -1,16 +1,18 @@
-<nav style="background-color: #64766a; padding: 10px; text-align: center;">
-    <a href="home.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Home</a> ||
-    <!-- Manually trigger logout via button -->
-    <button hx-post="http://localhost:8080/logout"
-            nunjucks-template="logout-triggered"
-            hx-target="#logout" id="logout" style="background-color: #94a7ae; color: #ffffff; border: none; padding: 5px 10px; cursor: pointer;">Logout </button>
-    {% if  admin %}
-    ||   <a href="adminpanel.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Adminpanel</a>
-    {% endif %}
-</nav>
+<header>
+    <nav class="navigation">
+        <a href="http://localhost:8080/home.html">Home</a>
 
-<template id="logout-triggered">
-    Logout 🏃 <strong>Redirecting ...</strong>
-    <span>Tschüss {{ username }}</span>
-    {{ redirect("index.html", 500) }}
-</template>
+        <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
+                nunjucks-template="logout-triggered"
+                hx-target="#logout" id="logout">Logout </button>
+    </nav>
+    {% if  admin %}
+    <a href="http://localhost:8080/adminpanel.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Adminpanel</a>
+    {% endif %}
+
+    <template id="logout-triggered">
+        Logout 🏃 <strong>Redirecting ...</strong>
+        <span>Tschüss {{ username }}</span>
+        {{ redirect("index.html", 500) }}
+    </template>
+</header>
