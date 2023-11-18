@@ -13,8 +13,8 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="indexBackup.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
@@ -29,36 +29,31 @@
 
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
-    {% include "templates/check-isAdmin.html" %}
-    {% include "templates/navbar.html" %}
+    {% include "templates/navbarAlt.html" %}
 
+    <h1>Home of stylish cars</h1>
 
-    <h1></h1>
-
-    <p> <strong>Willkommen {{ username }}</strong></p>
+    <p>Welcome, <strong>{{ username }}</strong></p>
 
     <hr>
-
-    <div class="box-container">
-        <div class="box">
-            <a href="home.html">
-            <button class="button">Zur Homepage</button>
-            </a>
+    <!-- This is just an example to get you started (see also RankController in backend). -->
+    <!-- TODO Needs to be implemented. Best is to copy 'home.html' and modify it to your needs. -->
+    <div class="content-flex-container">
+        <h3>The latest 3 Posts </h3>
+        <img class="rounded-box" src="images/car1.jpg" alt="ein Auto">
+        <img class="rounded-box" src="images/car2.jpg" alt="ein Auto">
+        <img class="rounded-box" src="images/car3.jpg" alt="ein Auto">
+        <div class="posts">
+            <p> Checkout all blog posts </p>
+            <a href="posts.html"><button>Click here 🌟</button></a>
         </div>
-        <div class="box">
-
-            <button class="button">Artikel schreiben</button>
-        </div>
-    </div>
-
-    <div class="box-center">
-        <a href="benutzerliste.html">
-        <button class="button">Benutzerliste bearbeiten</button>
-        </a>
     </div>
 
 
 </template>
 
+<template id="rank-result-template">
+    Hey, {{load('user').username}}, you are the <strong>{{rank}}th</strong> user on this site.
+</template>
 </body>
 </html>
