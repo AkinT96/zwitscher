@@ -108,7 +108,17 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    /*overflow: hidden;*/
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.wrapper.active {
+    height: 520px;
 }
 
 .wrapper .formBoxLogin {
@@ -118,10 +128,25 @@ header{
 }
 
 .wrapper .formBoxLogin {
-    display: none;
+   transition: transform .18s ease;
+    transform: translateX(0);
 }
 
-.wrapper .form-box
+.wrapper.active .formBoxLogin {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .formBoxRegister {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.wrapper.active .formBoxRegister {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
 
 .wrapper .boxSchließen {
     position: absolute;
@@ -141,6 +166,19 @@ header{
 }
 
 .formBoxLogin h2 {
+    font-size: 2em;
+    color: #8f0202;
+    text-align: center;
+}
+.formBoxLogin p {
+    color: white;
+}
+
+.formBoxRegister p {
+    color: white;
+}
+
+.formBoxRegister h2 {
     font-size: 2em;
     color: #8f0202;
     text-align: center;
