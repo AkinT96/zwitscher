@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Zwitscher</title>
+
+    <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+    <script src="https://unpkg.com/nunjucks@latest"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+    <script src="templates/javascript-helpers.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div hx-ext="client-side-templates, response-targets, json-enc"
+     hx-trigger="load"
+     hx-get="http://localhost:8080/user"
+     nunjucks-template="main-template"
+     hx-target-4*="#main"
+     hx-target="#main"
+     id="main">
+</div>
+
+<template id="main-template">
+    {% include "templates/check-session-valid.html" %}
+
+    <h2>Herzlich willkommen</h2>
+    <div class="form-container">
+        <div class="login-box">
+            <div class="formcolor">
+                <form hx-post="http://localhost:8080/login"
+                      nunjucks-template="login-successful"
+                      hx-target=".form-container"
+                      hx-target-4*="#error-box-login">
+                    <label for="username">Benutzername</label>
+                    <input type="text" id="username" name="username" value="user1">
+                    <label for="password">Passwort</label>
+                    <input type="password" id="password" name="password" value="12345">
+                    <button class="center-button" type="submit">Einloggen</button>
+                    <br>
+                    <button class="center-button"
+                            onclick="window.location.href='http://localhost:8080/registrierung.html'">Noch kein
+                        Mitglied?
+                    </button>
+                    <div id="error-box-login"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template id="login-successful">
+    {% if error %}
+    <div>
+        <code>{{ message }}</code>
+
+    </div>
+
+    {% elif admin %}
+    <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
+
+    {{redirect("adminpanel.html",500)}}
+
+    {% else %}
+    <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
+
+
+    {# Redirect to home after 500ms #}
+    {{redirect("home.html",500)}}
+    {% endif %}
+</template>
+</body>
+</html>

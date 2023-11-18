@@ -15,6 +15,7 @@
     <script src="templates/javascript-helpers.js"></script>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="indexBackup.css">
 </head>
 
 <body>
@@ -33,22 +34,20 @@
 
     <h1>Home of stylish cars</h1>
 
-    <p>Welcome, <strong>{{ username }}</strong></p>
+    <p>Willkommen, <strong>{{ username }}</strong></p>
 
     <hr>
-    <!-- This is just an example to get you started (see also RankController in backend). -->
-    <!-- TODO Needs to be implemented. Best is to copy 'home.html' and modify it to your needs. -->
-    <div class="content-flex-container">
-        <h3>The latest 3 Posts </h3>
+    <div class="formBoxLogin">
+
+        <h3><label>The latest 3 Posts</label> </h3>
         <img class="rounded-box" src="images/car1.jpg" alt="ein Auto">
         <img class="rounded-box" src="images/car2.jpg" alt="ein Auto">
         <img class="rounded-box" src="images/car3.jpg" alt="ein Auto">
         <div class="posts">
-            <p> Checkout all blog posts </p>
-            <a href="posts.html"><button>Click here 🌟</button></a>
+            <a class="navigation" href="posts.html"><button class="btnNavLogin">Forum</button></a>
         </div>
-    </div>
 
+    </div>
 
 </template>
 
