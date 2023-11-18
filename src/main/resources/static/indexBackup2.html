@@ -22,7 +22,7 @@
 
 <div hx-ext="client-side-templates, response-targets, json-enc"
      hx-trigger="load"
-     hx-get="http://localhost:8080/benutzer"
+     hx-get="http://localhost:8080/user"
      nunjucks-template="main-template"
      hx-target-4*="#main"
      hx-target="#main"
@@ -33,39 +33,45 @@
     {% include "templates/check-session-valid.html" %}
 
     <header>
-        <h2 class="logo">Carspot</h2>
+        <h2 class="logo">Logo</h2>
         <nav class="navigation">
-            <a href="http://localhost:8080/index.html">Start</a>
+            <a href="#">Start</a>
+            <a href="#">Posts</a>
+            <a href="#">Service</a>
             <a href="#">Kontakt</a>
             <button class="btnNavLogin">Login</button>
         </nav>
     </header>
 
-
     <div class="wrapper">
+    <span class="boxSchließen">
+      <ion-icon name="close-outline"></ion-icon>
+    </span>
         <div class="formBoxLogin">
             <h2>Login</h2>
-            <form hx-post="http://localhost:8080/login"
-                  nunjucks-template="login-successful"
-                  hx-target=".wrapper"
-                  hx-target-4*="#error-box-login">
+            <form action="#">
                 <div class="inputBox">
           <span class="icon">
-                    <ion-icon name="accessibility-outline"></ion-icon>          </span>
-                    <input type="text" id="username" name="username" required>
-                    <label>Benutzername</label>
+            <ion-icon name="mail-outline"></ion-icon>
+          </span>
+                    <input type="email" required>
+                    <label>Email</label>
                 </div>
                 <div class="inputBox">
           <span class="icon">
             <ion-icon name="lock-closed-outline"></ion-icon>
           </span>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" required>
                     <label>Passwort</label>
+                </div>
+                <div class="benutzerMerken">
+                    <label><input type="checkbox">Benutzer merken</label>
+                    <a href="#">Passwort vergessen</a>
                 </div>
                 <button type="submit" class="btn">Login</button>
                 <div class="loginRegister">
                     <p>Noch kein Konto?
-                        <a href="http://localhost:8080/registrierung.html" class="registrierenLink">Registrieren</a>
+                        <a href="#" class="registrierenLink">Registrieren</a>
                     </p>
                 </div>
             </form>
@@ -74,19 +80,25 @@
 
 </template>
 
+
 <template id="login-successful">
     {% if error %}
-
-    {{ message }}
+    <div>
+        <code>{{ message }}</code>
+    </div>
 
     {% elif admin %}
     <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
+
     {{redirect("adminpanel.html",500)}}
+
     {% else %}
     <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
+
+
+    {# Redirect to home after 500ms #}
     {{redirect("home.html",500)}}
     {% endif %}
 </template>
-
 </body>
 </html>

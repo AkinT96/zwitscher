@@ -13,8 +13,7 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="indexBackup.css">
+    <link rel="stylesheet" href="posts.css">
 </head>
 
 <body>
@@ -29,36 +28,38 @@
 
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
-    {% include "templates/check-isAdmin.html" %}
-    {% include "templates/navbar.html" %}
+    {% include "templates/navbarAlt.html" %}
 
+    <h1>Hallo hier siehst du die neuesten Posts:</h1>
 
-    <h1></h1>
-
-    <p> <strong>Willkommen {{ username }}</strong></p>
+    <p>Welcome, <strong>{{ username }}</strong></p>
 
     <hr>
 
-    <div class="box-container">
-        <div class="box">
-            <a href="home.html">
-            <button class="button">Zur Homepage</button>
-            </a>
-        </div>
-        <div class="box">
-
-            <button class="button">Artikel schreiben</button>
-        </div>
+    <div class=blogposts id="posts"
+         hx-get="http://localhost:8080/benutzerliste"
+         hx-target="#posts"
+         hx-trigger="load"
+         nunjucks-template="artikel-template">
     </div>
-
-    <div class="box-center">
-        <a href="benutzerliste.html">
-        <button class="button">Benutzerliste bearbeiten</button>
-        </a>
-    </div>
-
-
 </template>
 
+
+<template id="artikel-template">
+    {% for user in userListe %}
+    <div id="user-{{user.username}}">
+        {% set username = user.username %}
+        {% set admin = user.admin %}
+        {% set userid = user.id %}
+        {% include "/templates/user-view.html" %}
+    </div>
+    {% endfor %}
+</template>
+<template id="user-template">
+
+    {% include "/templates/user-view.html" %}
+
+</template>
 </body>
 </html>
+

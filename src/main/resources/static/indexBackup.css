@@ -12,9 +12,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("/static/images/loginBackground1.jpg") no-repeat;
     background-size: cover;
-    background-position: center;
+    background: url('images/loginBackground1.jpg') no-repeat center;
 }
 
 header{
@@ -23,7 +22,6 @@ header{
     left: 0;
     width: 100%;
     padding: 20px 100px;
-    /background: red;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -1,5 +1,5 @@
 <div id="user-{{username}}">
-    <span>Username:</span> <span>{{ username }}</span>
+     <span>{{ username }}</span>
     <button hx-target="#user-{{username}}"
             hx-patch="http://localhost:8080/setzeAlsAdmin/{{userid}}"
             nunjucks-template="user-template"
