@@ -2,6 +2,7 @@ package com.brights.zwitscher.kommentare;
 import com.brights.zwitscher.artikel.Artikel;
 import com.brights.zwitscher.artikel.ArtikelRepository;
 import com.brights.zwitscher.user.User;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class KommentarController {
         return new KommentarListeDTO(kommentarListe);
     }
 
-    @PostMapping("/pluskommentar")
+    @PostMapping("/kommentar")
     public Kommentar kommentarHinzufügen (@ModelAttribute("sessionUser") Optional<User> sessionUserOptional,
                                           @RequestBody KommentarDTO kommentar){
         User sessionUser = sessionUserOptional
@@ -35,5 +36,21 @@ public class KommentarController {
         return kommentarRepository.save(new Kommentar(kommentar.getText(), kommentar.getUser(), kommentar.getArtikel()));
 
 
+    }
+
+    @DeleteMapping("/kommentar/{kommentarId}")
+    public void löscheKommentar (@ModelAttribute("sessionUser") Optional<User> sessionUserOptional,
+                                 @PathVariable Long kommentarId, HttpServletResponse response){
+        User sessionUser = sessionUserOptional
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
+        Kommentar kommentar = kommentarRepository.findById(kommentarId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Kommentar existiert nicht."));
+        if (kommentar.getUser().equals(sessionUser) || sessionUser.isAdmin()){
+            kommentarRepository.delete(kommentar);
+            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du hast keine Rechte den Kommentar zu löschen");
+        }
     }
 }
