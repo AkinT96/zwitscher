@@ -14,7 +14,6 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="indexBackup.css">
 </head>
 
 <body>
@@ -30,28 +29,7 @@
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
     {% include "templates/check-isAdmin.html" %}
-
-
-    <header>
-        <nav class="navigation">
-            <a href="http://localhost:8080/home.html">Home</a>
-
-            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
-                    nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout </button>
-            <a href="http://localhost:8080/adminpanelAlt.html">FI</a>
-        </nav>
-        {% if  admin %}
-        <a href="http://localhost:8080/adminpanel.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Adminpanel</a>
-        {% endif %}
-
-        <template id="logout-triggered">
-            <span>Tschüss {{ username }}</span>
-            {{ redirect("index.html", 500) }}
-        </template>
-    </header>
-
-
+    {% include "templates/navbarAlt.html" %}
 
 
     <h1></h1>
@@ -63,7 +41,7 @@
     <div class="box-container">
         <div class="box">
             <a href="home.html">
-            <button class="button">Zur Homepage</button>
+                <button class="button">Zur Homepage</button>
             </a>
         </div>
         <div class="box">
@@ -74,7 +52,7 @@
 
     <div class="box-center">
         <a href="benutzerliste.html">
-        <button class="button">Benutzerliste bearbeiten</button>
+            <button class="button">Benutzerliste bearbeiten</button>
         </a>
     </div>
 

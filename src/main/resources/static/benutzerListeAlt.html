@@ -13,9 +13,7 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="indexBackup.css">
+    <link rel="stylesheet" href="posts.css">
 </head>
 
 <body>
@@ -30,58 +28,37 @@
 
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
+    {% include "templates/navbarAlt.html" %}
 
+    <h1>Hallo hier siehst du die neuesten Posts:</h1>
 
-    <header>
-        <nav class="navigation">
-            <a href="http://localhost:8080/home.html">Home</a>
+    <p>Welcome, <strong>{{ username }}</strong></p>
 
-            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
-                    nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout </button>
-        </nav>
-        {% if admin %}
-
-        <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
-
-        {% endif %}
-
-        <template id="logout-triggered">
-            <span>Tschüss {{ username }}</span>
-            {{ redirect("index.html", 500) }}
-        </template>
-    </header>
-
-
-
-<div class="formBoxLogin">
-    <h2>Benutzerübersicht und Rechteverwaltung</h2>
-</div>
     <hr>
 
-    <div class=center-container
+    <div class=blogposts id="posts"
          hx-get="http://localhost:8080/benutzerliste"
          hx-target="#posts"
          hx-trigger="load"
          nunjucks-template="artikel-template">
     </div>
-<div id="posts"></div>
-
 </template>
+
 
 <template id="artikel-template">
     {% for user in userListe %}
-
-  {% set username = user.username %}
-  {% set admin = user.admin %}
-  {% set userid = user.id %}
-  {% include "/templates/user-view.html" %}
-
+    <div id="user-{{user.username}}">
+        {% set username = user.username %}
+        {% set admin = user.admin %}
+        {% set userid = user.id %}
+        {% include "/templates/user-view.html" %}
+    </div>
     {% endfor %}
 </template>
-
 <template id="user-template">
+
     {% include "/templates/user-view.html" %}
+
 </template>
 </body>
 </html>

@@ -14,13 +14,15 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="indexBackup.css">
 </head>
 <body>
 
 <div hx-ext="client-side-templates, response-targets, json-enc"
      hx-trigger="load"
-     hx-get="http://localhost:8080/user"
+     hx-get="http://localhost:8080/benutzer"
      nunjucks-template="main-template"
      hx-target-4*="#main"
      hx-target="#main"
@@ -30,47 +32,117 @@
 <template id="main-template">
     {% include "templates/check-session-valid.html" %}
 
-    <h2>Herzlich willkommen</h2>
-    <div class="form-container">
-        <div class="login-box">
-            <div class="formcolor">
-                <form hx-post="http://localhost:8080/login"
-                      nunjucks-template="login-successful"
-                      hx-target=".form-container"
-                      hx-target-4*="#error-box-login">
-                    <label for="username">Benutzername</label>
-                    <input type="text" id="username" name="username" value="user1">
-                    <label for="password">Passwort</label>
-                    <input type="password" id="password" name="password" value="12345">
-                    <button class="center-button" type="submit">Einloggen</button>
-                    <br>
-                    <button class="center-button" onclick="window.location.href='http://localhost:8080/registrierung.html'">Noch kein Mitglied?</button>
-                    <div id="error-box-login"></div>
-                </form>
-            </div>
+    <header>
+        <div id="logoBild">
+            <img src='images/logo.svg' alt="Logo Lenkrad">
+        </div>        <nav class="navigation">
+            <a href="http://localhost:8080/index.html">Start</a>
+            <button class="btnNavLogin">Login</button>
+        </nav>
+    </header>
+
+
+    <div class="wrapper">
+        <div class="formBoxLogin">
+            <h2>Login</h2>
+            <form hx-post="http://localhost:8080/login"
+                  nunjucks-template="login-successful"
+                  hx-target=".wrapper"
+                  hx-target-4*="#error-box-login">
+                <div class="inputBox">
+          <span class="icon">
+                    <ion-icon name="accessibility-outline"></ion-icon>          </span>
+                    <input type="text" id="username" name="username" required>
+                    <label>Benutzername</label>
+                </div>
+                <div class="inputBox">
+          <span class="icon">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </span>
+                    <input type="password" id="password" name="password" required>
+                    <label>Passwort</label>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="loginRegister">
+                    <p>Noch kein Konto?
+                        <a href="#" class="registrierenLink">Registrieren</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="formBoxRegister">
+            <h2>Registration</h2>
+            <form  hx-post="http://localhost:8080/registriere"
+                   nunjucks-template="login-successful"
+                   hx-target=".wrapper"
+                   hx-target-4*="#error-box-login">
+
+                <div class="inputBox">
+          <span class="icon">
+            <ion-icon name="person-outline"></ion-icon>
+          </span>
+                    <input type="text" id="usernamer" name="username" required>
+                    <label>Benutzername</label>
+                </div>
+
+
+
+                <div class="inputBox">
+          <span class="icon">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </span>
+                    <input type="password" id="passwordr" name="password" required>
+                    <label>Passwort</label>
+                </div>
+
+
+
+                <div class="inputBox">
+          <span class="icon">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </span>
+                    <input type="password" id="passwordBestätigung" name="passwordBestätigung" required>
+                    <label>Passwort wiederholen</label>
+                </div>
+
+
+
+                <div class="inputBox">
+          <span class="icon">
+            <ion-icon name="mail-outline"></ion-icon>
+          </span>
+                    <input type="email" id="email" name="email" required>
+                    <label>Email</label>
+                </div>
+
+
+
+
+                <button type="submit" class="btn">Registrieren</button>
+                <div class="loginRegister">
+                    <p>Du besitzt bereits ein Konto?
+                        <a href="#" class="loginLink">Einloggen</a>
+                    </p>
+
+
+                </div>
+            </form>
         </div>
     </div>
-</template>
 
+
+</template>
 
 <template id="login-successful">
     {% if error %}
-    <div>
-        <code>{{ message }}</code>
-    </div>
-
-    {% elif admin %}
-    <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
-
-    {{redirect("adminpanel.html",500)}}
-
+    {{redirect("index.html",500)}}
     {% else %}
     <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
-
-
-    {# Redirect to home after 500ms #}
     {{redirect("home.html",500)}}
     {% endif %}
 </template>
+<script src="indexScript.js"></script>
 </body>
 </html>
