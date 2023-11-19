@@ -1,5 +1,7 @@
 GET http://localhost:8080/artikelliste
 
+### get artikel with comments
+GET http://localhost:8080/artikelkommentarliste
 
 ### Register user
 POST http://localhost:8080/registriere
@@ -41,33 +43,10 @@ Content-Type:application/json
 GET http://localhost:8080/rank
 
 ### Füge einen Kommentar zu einem Artikel hinzu
-POST http://localhost:8080/pluskommentar
+POST http://localhost:8080/kommentar/3
 Content-Type: application/json
 
-{
-  "id": 1,
-  "text": "Kommentar 1",
-  "user": {
-    "id": 1,
-    "username": "user1",
-    "email": null,
-    "admin": false
-  },
-  "artikel": {
-    "id": 1,
-    "user": {
-      "id": 1,
-      "username": "user1",
-      "email": null,
-      "admin": false
-    },
-    "titel": "was geht",
-    "text": "hey",
-    "url": "hdhhdah",
-    "erstelltAm": "2023-11-16T11:05:14.090036"
-  },
-  "erstelltAm": "2023-11-16T11:05:14.092034"
-}
+{"text": "Kommentar 123456 Baby"}
 
 ### Register second user
 POST http://localhost:8080/registriere
@@ -97,4 +76,4 @@ Content-Type: application/json
 }
 
 ### Hole Artikel
-GET http://localhost:8080/artikel/2
+GET http://localhost:8080/artikel/3
