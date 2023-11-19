@@ -15,6 +15,8 @@
     <script src="templates/javascript-helpers.js"></script>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="artikel.css">
+    <link rel="stylesheet" href="indexBackup.css">
+    <link rel="stylesheet" href="artikelerstellen.css">
 </head>
 
 <body>
@@ -38,20 +40,50 @@
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
     {% include "templates/check-isAdmin.html" %}
-    {% include "templates/navbar.html" %}
 
-    <h1></h1>
-    <p> <strong>Willkommen {{ username }}</strong></p>
-    <hr>
+
+    <header>
+        <nav class="navigation">
+            <a href="http://localhost:8080/home.html">Home</a>
+
+            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
+                    nunjucks-template="logout-triggered"
+                    hx-target="#logout" id="logout">Logout </button>
+        </nav>
+        {% if admin %}
+
+        <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
+        <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
+
+        {% endif %}
+
+        <template id="logout-triggered">
+            <span>Tschüss {{ username }}</span>
+            {{ redirect("index.html", 500) }}
+        </template>
+    </header>
+
+
+
 </template>
 <template id="form-template">
     <form hx-post="http://localhost:8080/artikel">
+
+        <div class="inputBox">
         <label>Titel</label><br>
         <input type="text" name="titel" id="titel" value="{{ titel }}"><br>
+        </div>
+
         <label>Artikel Inhalt</label><br>
-        <input type="text" name="text" id="text" class="artikelbox" value="{{ text }}"><br>
+        <textarea id="text" name="text"  rows="4" cols="50">
+            </textarea>
+
+
+        <div class="inputBox">
         <label>Url</label><br>
         <input type="text" name="url" id="url" value="{{ url }}"><br>
+
+        </div>
         <button type="submit">Artikel speichern</button>
     </form>
 </template>
