@@ -8,11 +8,11 @@ public class UserRegistrierenDTO {
 
     @NotEmpty(message = "Der Benutzername darf nicht leer sein.")
     @Size(min = 3, max = 20, message = "Der Benutzername muss zwischen 3 und 20 Zeichen lang sein.")
-    private String username;
+    private String usernamer;
 
     @NotEmpty(message = "Das Passwort darf nicht leer sein.")
     @Size(min = 6, message = "Das Passwort muss mindestens 6 Zeichen lang sein.")
-    private String password;
+    private String passwordr;
 
     @NotEmpty(message = "Die Passwortbestätigung darf nicht leer sein.")
 
@@ -25,19 +25,19 @@ public class UserRegistrierenDTO {
 
 
     public String getUsername() {
-        return username;
+        return usernamer;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.usernamer = username;
     }
 
     public String getPassword() {
-        return password;
+        return passwordr;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.passwordr = password;
     }
 
     public String getPasswordBestätigung() {

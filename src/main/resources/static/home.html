@@ -38,7 +38,6 @@
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
                     hx-target="#logout" id="logout">Logout </button>
-            <a href="http://localhost:8080/homeAlt.html">FI</a>
         </nav>
         {% if admin %}
 
@@ -55,9 +54,11 @@
 
 
 
-    <h1>Das Zuhause der Autoliebhaber</h1>
-
-    <p>Willkommen, <strong>{{ username }}</strong></p>
+    <div class="formBoxLogin">
+        <h2>
+Das Zuhause der Autoliebhaber
+        </h2>
+        </div>
 
     <hr>
     <div class="formBoxLogin">
