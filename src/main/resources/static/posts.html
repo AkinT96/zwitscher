@@ -59,9 +59,8 @@
 
 
     <hr>
-    <!-- This is just an example to get you started (see also RankController in backend). -->
 
-    <!-- here the latest blogposts will be shown -->
+
     <div class=blogposts id="posts"
          hx-get="http://localhost:8080/artikelkommentarliste"
          hx-target="#posts"
@@ -70,10 +69,15 @@
     </div>
 
 
+
 </template>
+
+
 <template id="artikel-template">
     <div class="posts">
         {% for artikel in artikelKommentarListe %}
+
+
         <div class="post-inhalt">
             <img class="bild"
                  src="{{ artikel.url }}"
@@ -97,10 +101,11 @@
         </div>
         <form hx-post="http://localhost:8080/kommentar/{{ artikel.id }}"
               nunjucks-template="redirect-template">
-            <textarea id="text" id="text" rows="4" cols="50">
+            <textarea id="text" name="text" rows="4" cols="50">
 
             </textarea>
             <button class="btnBenutzerUebersicht" type="submit">Kommentar abschicken</button>
+            <hr>
         </form>
         {% endfor %}
 

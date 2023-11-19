@@ -22,7 +22,7 @@
     align-items: center;
 }
 .posts {
-    width : 50%;
+    width : 60%;
     border-radius: 10px;
     margin : 20px;
     padding: 10px;
@@ -67,7 +67,7 @@
 .btnBenutzerUebersicht {
     display: flex;
     width: 20%;
-    border: none;
+    border: 1px #222222 solid;
     outline: none;
     border-radius: 8px;
     cursor: pointer;
@@ -76,6 +76,7 @@
     font-weight: 500;
     justify-content: center;
     background: transparent;
+    justify-self: center;
 }
 
 
