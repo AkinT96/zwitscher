@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+
+    <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+    <script src="https://unpkg.com/nunjucks@latest"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+    <script src="templates/javascript-helpers.js"></script>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="artikel.css">
+</head>
+
+<body>
+<div hx-ext="client-side-templates,response-targets,json-enc"
+     hx-trigger="load"
+     hx-get="http://localhost:8080/benutzer"
+     nunjucks-template="main-template"
+     hx-target-4*="#main"
+     hx-target="#main"
+     id="main">
+</div>
+<div hx-ext="client-side-templates,response-targets,json-enc"
+     hx-trigger="load"
+     hx-get="http://localhost:8080/artikel/2"
+     nunjucks-template="form-template"
+     hx-target="#formloader"
+     hx-target-4*="#formloader"
+     id="formloader">
+    hallo
+</div>
+<template id="main-template">
+    {% include "templates/check-session-invalid.html" %}
+    {% include "templates/check-isAdmin.html" %}
+    {% include "templates/navbar.html" %}
+
+    <h1></h1>
+    <p> <strong>Willkommen {{ username }}</strong></p>
+    <hr>
+</template>
+<template id="form-template">
+    <form hx-post="http://localhost:8080/artikel">
+        <label>Titel</label><br>
+        <input type="text" name="titel" id="titel" value="{{ titel }}"><br>
+        <label>Artikel Inhalt</label><br>
+        <input type="text" name="text" id="text" class="artikelbox" value="{{ text }}"><br>
+        <label>Url</label><br>
+        <input type="text" name="url" id="url" value="{{ url }}"><br>
+        <button type="submit">Artikel speichern</button>
+    </form>
+</template>
+</body>
+</html>

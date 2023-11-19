@@ -30,6 +30,7 @@
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
 
+
     <header>
         <nav class="navigation">
             <a href="http://localhost:8080/home.html">Home</a>
@@ -37,10 +38,11 @@
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
                     hx-target="#logout" id="logout">Logout </button>
-            <a href="http://localhost:8080/benutzerListeAlt.html">FI</a>
         </nav>
-        {% if  admin %}
-        <a href="http://localhost:8080/adminpanel.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Adminpanel</a>
+        {% if admin %}
+
+        <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
+
         {% endif %}
 
         <template id="logout-triggered">
@@ -48,6 +50,7 @@
             {{ redirect("index.html", 500) }}
         </template>
     </header>
+
 
 
 

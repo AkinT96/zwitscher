@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,23 +13,24 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="indexBackup.css">
 </head>
 
 <body>
 <div hx-ext="client-side-templates,response-targets,json-enc"
-      hx-trigger="load"
-      hx-get="http://localhost:8080/benutzer"
-      nunjucks-template="main-template"
-      hx-target-4*="#main"
-      hx-target="#main"
-      id="main">
+     hx-trigger="load"
+     hx-get="http://localhost:8080/benutzer"
+     nunjucks-template="main-template"
+     hx-target-4*="#main"
+     hx-target="#main"
+     id="main">
 </div>
 
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
+    {% include "templates/check-isAdmin.html" %}
+
 
     <header>
         <nav class="navigation">
@@ -38,7 +39,6 @@
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
                     hx-target="#logout" id="logout">Logout </button>
-            <a href="http://localhost:8080/homeAlt.html">FI</a>
         </nav>
         {% if admin %}
 
@@ -54,28 +54,19 @@
     </header>
 
 
-
-    <h1>Das Zuhause der Autoliebhaber</h1>
-
-    <p>Willkommen, <strong>{{ username }}</strong></p>
-
+    <h1></h1>
+    <p> <strong>Willkommen {{ username }}</strong></p>
     <hr>
-    <div class="formBoxLogin">
 
-        <h3><label>The latest 3 Posts</label> </h3>
-        <img class="rounded-box" src="images/car1.jpg" alt="ein Auto">
-        <img class="rounded-box" src="images/car2.jpg" alt="ein Auto">
-        <img class="rounded-box" src="images/car3.jpg" alt="ein Auto">
-        <div class="posts">
-            <a class="navigation" href="posts.html"><button class="btnNavLogin">Forum</button></a>
-        </div>
-
-    </div>
-
-</template>
-
-<template id="rank-result-template">
-    Hey, {{load('user').username}}, you are the <strong>{{rank}}th</strong> user on this site.
+    <form hx-post="http://localhost:8080/artikel">
+        <label>Titel</label><br>
+        <input type="text" name="titel" id="titel"><br>
+        <label>Artikel Inhalt</label><br>
+        <input type="text" name="text" id="text" class="artikelbox"><br>
+        <label>Url</label><br>
+        <input type="text" name="url" id="url"><br>
+        <button type="submit">Artikel speichern</button>
+    </form>
 </template>
 </body>
 </html>
