@@ -309,3 +309,8 @@ header{
     justify-content: center;
     background: transparent;
 }
+
+i {
+    text-align: end;
+    border:1px solid  #222222;
+    }
