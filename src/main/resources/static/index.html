@@ -124,10 +124,6 @@
     {% if error %}
 
     {{ message }}
-
-    {% elif admin %}
-    <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
-    {{redirect("adminpanel.html",500)}}
     {% else %}
     <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
     {{redirect("home.html",500)}}

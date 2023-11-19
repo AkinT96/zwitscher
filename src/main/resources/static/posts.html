@@ -15,11 +15,10 @@
   <script src="templates/javascript-helpers.js"></script>
   <link rel="stylesheet" href="posts.css">
   <link rel="stylesheet" href="indexBackup.css">
+
 </head>
 
 <body>
-  <div id="headerBild">
-  </div>
 <div hx-ext="client-side-templates,response-targets,json-enc"
      hx-trigger="load"
      hx-get="http://localhost:8080/benutzer"
@@ -32,6 +31,7 @@
 <template id="main-template">
   {% include "templates/check-session-invalid.html" %}
 
+
   <header>
     <nav class="navigation">
       <a href="http://localhost:8080/home.html">Home</a>
@@ -39,10 +39,12 @@
       <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
               nunjucks-template="logout-triggered"
               hx-target="#logout" id="logout">Logout </button>
-      <a href="http://localhost:8080/postsAlt.html">FI</a>
     </nav>
-    {% if  admin %}
-    <a href="http://localhost:8080/adminpanel.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Adminpanel</a>
+    {% if admin %}
+
+    <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
+    <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
+
     {% endif %}
 
     <template id="logout-triggered">
@@ -50,7 +52,6 @@
       {{ redirect("index.html", 500) }}
     </template>
   </header>
-
 
 
   <h1>Hallo hier siehst du die neuesten Posts:</h1>
@@ -62,31 +63,48 @@
 
   <!-- here the latest blogposts will be shown -->
   <div class=blogposts id="posts"
-       hx-get="http://localhost:8080/artikelliste"
+       hx-get="http://localhost:8080/artikelkommentarliste"
        hx-target="#posts"
        hx-trigger="load"
-       nunjucks-template="artikel-template">click
+       nunjucks-template="artikel-template">
   </div>
 
 
 </template>
 <template id="artikel-template">
-  {% for artikel in artikelListe %}
   <div class="posts">
+    {% for artikel in artikelKommentarListe %}
     <div class="post-inhalt">
       <img class="bild"
-           src="https://cdn.motor1.com/images/mgl/P3nO74/s1/2000-nissan-skyline-r34-gt-r-by-kaizo-industries-driven-by-paul-walker-in-fast-and-furious-bonham-s-auction.webp"
-           alt="">
+           src= "{{ artikel.url }}"
+           alt="" />
       <div class="titelBox">
         <div class="titel">{{ artikel.titel }}</div>
       </div>
-        <div class="datum">{{ artikel.erstelltAm }}</div>
+      <div class="datum">{{ artikel.erstelltAm }}</div>
       <div>{{ artikel.text }}</div>
-      <div>{{ artikel.url }}</div>
-    </div>
-  </div>
-  {% endfor %}
-</template>
 
+    </div>
+
+
+    <!-- Die Kommentare -->
+    <div id="Kommentar-{{ artikel.id }}">
+      {% for kommentar in artikel.kommentare %}
+      <div> {{ kommentar.text }}</div>
+      {% endfor %}
+    </div>
+    <form hx-post="http://localhost:8080/kommentar/{{ artikel.id }}"
+          nunjucks-template="redirect-template"
+    >
+      <input type="text" name="text" id="text">
+      <button type="submit">Kommentar abschicken</button>
+    </form>
+    {% endfor %}
+
+  </div>
+</template>
+<template id="redirect-template">
+  {{redirect('posts.html')}}
+</template>
 </body>
 </html>

@@ -27,15 +27,14 @@ public class KommentarController {
         return new KommentarListeDTO(kommentarListe);
     }
 
-    @PostMapping("/kommentar")
+    @PostMapping("/kommentar/{artikelId}")
     public Kommentar kommentarHinzufügen (@ModelAttribute("sessionUser") Optional<User> sessionUserOptional,
-                                          @RequestBody KommentarDTO kommentar){
+                                          @RequestBody KommentarTextDTO kommentar, @PathVariable Long artikelId){
         User sessionUser = sessionUserOptional
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
-
-        return kommentarRepository.save(new Kommentar(kommentar.getText(), kommentar.getUser(), kommentar.getArtikel()));
-
-
+        Artikel artikel = artikelRepository.findById(artikelId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Artikel existiert nicht"));
+        return kommentarRepository.save(new Kommentar(kommentar.getText(), sessionUser, artikel));
     }
 
     @DeleteMapping("/kommentar/{kommentarId}")
