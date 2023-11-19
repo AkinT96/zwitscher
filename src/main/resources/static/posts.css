@@ -23,11 +23,10 @@
 }
 .posts {
     width : 80%;
-    border: 1px solid blue;
     border-radius: 10px;
     margin : 20px;
     padding: 10px;
-    background-color: #c0a9bd;
+    background-color: #8f0202;
     justify-content: center;
 }
 
@@ -58,3 +57,9 @@
     color: #888;
     font-size: 12px;
 }
+
+    body {
+        scroll-padding-top: 100px;
+        margin-top: 100px;
+    }
+

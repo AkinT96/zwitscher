@@ -1,14 +1,19 @@
 <div id="user-{{username}}">
-     <span>{{ username }}</span>
-    <button hx-target="#user-{{username}}"
+    <label class="labelText">{{ username }}</label>
+    <button class="btnBenutzerUebersicht"
+            hx-target="#user-{{username}}"
             hx-patch="http://localhost:8080/setzeAlsAdmin/{{userid}}"
             nunjucks-template="user-template"
             hx-vals='js:{"admin": ! {{admin}}}'
             hx-swap="outerHTML">
         {% if admin %}
-        Downgrade
+        <span class="icon">
+        <ion-icon size="large" name="person-add"></ion-icon>
+            </span>
         {% else %}
-        Upgrade
+        <span class="icon">
+        <ion-icon size="large" name="person-remove"></ion-icon>
+            </span>
         {% endif %}
     </button>
 </div>

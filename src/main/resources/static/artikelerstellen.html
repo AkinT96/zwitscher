@@ -15,6 +15,7 @@
     <script src="templates/javascript-helpers.js"></script>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="indexBackup.css">
+    <link rel="stylesheet" href="artikelerstellen.css">
 </head>
 
 <body>
@@ -53,19 +54,26 @@
         </template>
     </header>
 
-
-    <h1></h1>
-    <p> <strong>Willkommen {{ username }}</strong></p>
+    <div class="formBoxLogin">
+        <h2>Admins am Steuer: Neue Artikel kreieren</h2>
+    </div>
     <hr>
 
+
     <form hx-post="http://localhost:8080/artikel">
+        <div class="inputBox">
         <label>Titel</label><br>
         <input type="text" name="titel" id="titel"><br>
+        </div>
         <label>Artikel Inhalt</label><br>
-        <input type="text" name="text" id="text" class="artikelbox"><br>
+            <textarea id="text" name="text"  rows="4" cols="50">
+            </textarea>
+
+        <div class="inputBox">
         <label>Url</label><br>
         <input type="text" name="url" id="url"><br>
-        <button type="submit">Artikel speichern</button>
+        </div>
+        <button class="btn" type="submit">Artikel speichern</button>
     </form>
 </template>
 </body>
