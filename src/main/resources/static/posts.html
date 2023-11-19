@@ -13,8 +13,8 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
-    <link rel="stylesheet" href="posts.css">
     <link rel="stylesheet" href="indexBackup.css">
+    <link rel="stylesheet" href="posts.css">
 
 </head>
 
@@ -91,14 +91,16 @@
         <!-- Die Kommentare -->
         <div id="Kommentar-{{ artikel.id }}">
             {% for kommentar in artikel.kommentare %}
-            <div> {{ kommentar.text }}</div>
+            <div> {{ kommentar.text }}  <i>{{ kommentar.user.username}}</i></div>
+
             {% endfor %}
         </div>
         <form hx-post="http://localhost:8080/kommentar/{{ artikel.id }}"
-              nunjucks-template="redirect-template"
-        >
-            <input type="text" name="text" id="text">
-            <button class="btn" type="submit">Kommentar abschicken</button>
+              nunjucks-template="redirect-template">
+            <textarea id="text" id="text" rows="4" cols="50">
+
+            </textarea>
+            <button class="btnBenutzerUebersicht" type="submit">Kommentar abschicken</button>
         </form>
         {% endfor %}
 
