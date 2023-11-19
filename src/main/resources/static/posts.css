@@ -67,7 +67,7 @@
 .btnBenutzerUebersicht {
     display: flex;
     width: 20%;
-    border: none;
+    border: 1px #222222 solid;
     outline: none;
     border-radius: 8px;
     cursor: pointer;
