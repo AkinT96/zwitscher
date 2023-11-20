@@ -89,13 +89,12 @@
             {% endfor %}
         </div>
         <div class="kommentarForm">
-            <form hx-post="http://localhost:8080/kommentar/{{ artikel.id }}"
-                  nunjucks-template="redirect-template">
-                <Label><b> Kommentar hinzufügen: </b></Label><br>
-                <textarea id="text" name="text" rows="2" cols="50">
-                </textarea>
+            <form hx-post="http://localhost:8080/kommentar/{{ artikel.id }}" nunjucks-template="redirect-template">
+                <label><b> Kommentar hinzufügen: </b></label><br>
+                <textarea id="text" name="text" rows="2" cols="50"></textarea>
                 <button class="btnBenutzerUebersicht" type="submit">Kommentar abschicken</button>
             </form>
+
         </div>
 
         {% if "{{load('benutzer').admin}}" %}
