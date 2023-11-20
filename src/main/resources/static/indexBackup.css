@@ -23,6 +23,7 @@ header{
     left: 0;
     width: 100%;
     padding: 20px 100px;
+    background-color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,7 +53,7 @@ header{
 .navigation a {
     position: relative;
     font-size: 1.1em;
-    color: #8f0202;
+    color: #d0d0d0;
     text-decoration: none;
     font-weight: 500;
     margin-left: 40px;
@@ -81,12 +82,12 @@ header{
     width: 130px;
     height: 50px;
     background: transparent;
-    border: 2px solid #8f0202;
+    border: 2px solid #d0d0d0;
     outline: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 1.1em;
-    color: #8f0202;
+    color: #d3d3d3;
     font-weight: 500;
     margin-left: 40px;
 }
@@ -170,7 +171,7 @@ header{
 
 .formBoxLogin h2 {
     font-size: 2em;
-    color: #8f0202;
+    color: #d0d0d0;
     text-align: center;
 }
 .formBoxLogin p {
@@ -183,7 +184,7 @@ header{
 
 .formBoxRegister h2 {
     font-size: 2em;
-    color: #8f0202;
+    color: #d0d0d0;
     text-align: center;
 }
 
@@ -191,7 +192,7 @@ header{
     position: relative;
     width: 100%;
     height: 50px;
-    border-bottom: 2px solid #8f0202;
+    border-bottom: 2px solid #d0d0d0;
     margin: 30px 0;
 }
 
@@ -201,7 +202,7 @@ header{
     left: 5px;
     transform: translateY(-50%);
     font-size: 1em;
-    color: #8f0202;
+    color: #d0d0d0;
     font-weight: 500;
     pointer-events: none;
     transition: .5s;
@@ -219,7 +220,7 @@ header{
     border: none;
     outline: none;
     font-size: 1em;
-    color: #8f0202;
+    color: #d0d0d0;
     font-weight: 600;
     padding: 0 35px 0 5px;
 }
@@ -228,7 +229,7 @@ header{
     position: absolute;
     right: 8px;
     font-size: 1.2em;
-    color: #8f0202;
+    color: #d0d0d0;
     line-height: 57px;
 }
 
@@ -268,16 +269,34 @@ header{
     font-weight: 500;
 }
 
-.registrierenLink {
+.loginLink {
     font-size: .9em;
-    color: #8f0202;
+    color: #ea0000;
     text-align: center;
     font-weight: 500;
-    margin: 25px 0 10px;
+    margin: 25px 0 10px 10px;
+}
+
+.loginLink p a {
+    color: #ea0000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.loginLink p a:hover {
+    text-decoration: underline;
+}
+
+.registrierenLink {
+    font-size: .9em;
+    color: #ea0000;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px 87px;
 }
 
 .registrierenLink p a {
-    color: #8f0202;
+    color: #ea0000;
     text-decoration: none;
     font-weight: 600;
 }
@@ -291,7 +310,7 @@ header{
         border: none;
         outline: none;
         font-size: 1em;
-        color: #8f0202;
+        color: #d0d0d0;
         font-weight: 700;
         justify-content: center;
     }
@@ -304,7 +323,7 @@ header{
     border-radius: 8px;
     cursor: pointer;
     font-size: 1em;
-    color: #ffffff;
+    color: #d0d0d0;
     font-weight: 500;
     justify-content: center;
     background: transparent;
