@@ -1,3 +1,51 @@
+
+POST http://localhost:8080/registriere
+Content-Type:application/json
+
+{
+  "username": "eva",
+  "password": "12345",
+  "passwordBestätigung": "123456",
+  "email": "abd@def.de"
+}
+
+
+###
+
+POST http://localhost:8080/registriere
+Content-Type:application/json
+
+{
+  "username": "eva",
+  "password": "12345",
+  "passwordBestätigung": "12345",
+  "email": "abd@def.de"
+}
+
+###
+
+POST http://localhost:8080/registriere
+Content-Type:application/json
+
+{
+  "username": "evaMitEinemVielZuLangemNamenUmEinWenigZuTesten",
+  "password": "123456",
+  "passwordBestätigung": "123456",
+  "email": "abd@def.de"
+}
+
+###
+POST http://localhost:8080/registriere
+Content-Type:application/json
+
+{
+  "username": "evaMitEinemVielZuLangemNamenUmEinWenigZuTesten",
+  "password": "12345",
+  "passwordBestätigung": "12345",
+  "email": "abdcdef.de"
+}
+
+###
 GET http://localhost:8080/artikelliste
 
 ### get artikel with comments
