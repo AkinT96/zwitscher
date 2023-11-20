@@ -28,18 +28,21 @@ public class ArtikelController {
     }
 
     @GetMapping("/artikel/{artikelId}")
-    public Artikel artikelAusgeben(@PathVariable Long artikelId) {
+    public Artikel artikelAusgeben(@PathVariable Long artikelId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
+        User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         return artikelRepository.findById(artikelId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Artikel nicht gefunden"));
     }
 
     @GetMapping("/artikelliste")
-    public ArtikelListeDTO artikelListeAusgeben() {
+    public ArtikelListeDTO artikelListeAusgeben(@ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
+        User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         List<Artikel> artikelListe = artikelRepository.findAllByOrderByErstelltAmDesc();
         return new ArtikelListeDTO(artikelListe);
     }
 
     @GetMapping("/artikelkommentarliste")
-    public ArtikelKommentarListeDTO artikelKommentarListeAusgeben() {
+    public ArtikelKommentarListeDTO artikelKommentarListeAusgeben(@ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
+        User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         List<Artikel> artikelListe = artikelRepository.findAllByOrderByErstelltAmDesc();
         List<ArtikelKommentarDTO> artikelKommentareListe = new ArrayList<>();
         for (Artikel artikel : artikelListe){
