@@ -30,7 +30,8 @@
 
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
-    {{save('benutzer')}}
+
+
     <header>
         <nav class="navigation">
             <a href="http://localhost:8080/home.html">Home</a>
@@ -94,8 +95,12 @@
                 <textarea id="text" name="text" rows="2" cols="50"></textarea>
                 <button class="btnBenutzerUebersicht" type="submit">Kommentar abschicken</button>
             </form>
-
         </div>
+
+
+
+
+
 
     </div>
     {% endfor %}
