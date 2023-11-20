@@ -5,9 +5,15 @@ import com.brights.zwitscher.user.User;
 import com.brights.zwitscher.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,24 +33,31 @@ public class ArtikelController {
     }
 
     @GetMapping("/artikel/{artikelId}")
-    public Artikel artikelAusgeben(@PathVariable Long artikelId) {
+    public Artikel artikelAusgeben(@PathVariable Long artikelId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
+        User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         return artikelRepository.findById(artikelId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Artikel nicht gefunden"));
     }
 
     @GetMapping("/artikelliste")
-    public ArtikelListeDTO artikelListeAusgeben() {
+    public ArtikelListeDTO artikelListeAusgeben(@ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
+        User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         List<Artikel> artikelListe = artikelRepository.findAllByOrderByErstelltAmDesc();
         return new ArtikelListeDTO(artikelListe);
     }
 
     @GetMapping("/artikelkommentarliste")
-    public ArtikelKommentarListeDTO artikelKommentarListeAusgeben() {
+    public ArtikelKommentarListeDTO artikelKommentarListeAusgeben(@ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
+        User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         List<Artikel> artikelListe = artikelRepository.findAllByOrderByErstelltAmDesc();
         List<ArtikelKommentarDTO> artikelKommentareListe = new ArrayList<>();
-        for (Artikel artikel : artikelListe) {
-            ArtikelKommentarDTO artikelKommentar = new ArtikelKommentarDTO(artikel.getId(), artikel.getText(), artikel.getTitel(), artikel.getUrl(), artikel.getUser(), artikel.getErstelltAm());
-            artikelKommentar.setKommentare(kommentarRepository.findByArtikelOrderByErstelltAmAsc(Optional.ofNullable(artikel)));
-            artikelKommentareListe.add(artikelKommentar);
+
+        for (Artikel artikel : artikelListe){
+           ZonedDateTime zonedDateTime = ZonedDateTime.of(artikel.getErstelltAm(), ZoneId.of("Europe/Berlin"));
+           String zeit = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).format(zonedDateTime);
+           ArtikelKommentarDTO artikelKommentar= new ArtikelKommentarDTO(artikel.getId(), artikel.getText(),
+                   artikel.getTitel(), artikel.getUrl(), artikel.getUser(), zeit);
+           artikelKommentar.setKommentare(kommentarRepository.findByArtikelOrderByErstelltAmAsc(Optional.ofNullable(artikel)));
+           artikelKommentareListe.add(artikelKommentar);
         }
         return new ArtikelKommentarListeDTO(artikelKommentareListe);
     }
@@ -75,15 +88,4 @@ public class ArtikelController {
         return artikelRepository.save(artikel);
 
     }
-
-    @DeleteMapping("/artikel/löscht/{artikelId}")
-    public String artikelLöschen(@PathVariable Long artikelId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
-        User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
-        if (!user.isAdmin()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du bist kein Admin");
-        Artikel artikel = artikelRepository.findById(artikelId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Artikel existiert nicht"));
-        artikelRepository.deleteById(artikelId);
-        return "Artikel erfolgreich gelöscht";
-
-    }
-
 }
