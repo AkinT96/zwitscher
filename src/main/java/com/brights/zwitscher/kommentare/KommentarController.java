@@ -20,10 +20,8 @@ public class KommentarController {
     @Autowired
     private ArtikelRepository artikelRepository;
     @GetMapping("/kommentare/{artikelId}")
-    public KommentarListeDTO kommentareAusgeben (@PathVariable Long artikelId,
-                                                 @ModelAttribute("sessionUser") Optional<User> sessionUserOptional){
-        User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED,
-                "Logindaten sind nicht gültig."));
+    public KommentarListeDTO kommentareAusgeben (@PathVariable Long artikelId){
+
         Optional<Artikel> artikel = artikelRepository.findById(artikelId);
         List<Kommentar> kommentarListe = kommentarRepository.findByArtikelOrderByErstelltAmAsc(artikel);
         return new KommentarListeDTO(kommentarListe);
