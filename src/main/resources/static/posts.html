@@ -97,16 +97,6 @@
 
         </div>
 
-        {% if "{{load('benutzer').admin}}" %}
-        <div class="trash" id="trash">
-
-            <button style="color: #222222;background-color: red " id="trash-button" type="submit" hx-delete="http://localhost:8080/artikel/{{ artikel.id }}"
-                    nunjucks-template="redirect-template"
-                    hx-target="#trash-button">
-              <b style="font-size: 20px">  Artikel löschen</b>
-            </button>
-        </div>
-        {% endif %}
     </div>
     {% endfor %}
 </template>
