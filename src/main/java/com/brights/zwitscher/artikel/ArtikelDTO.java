@@ -12,6 +12,7 @@ public class ArtikelDTO {
         this.text = text;
         this.url = url;
     }
+    public ArtikelDTO(){}
 
     public String getTitel() {
         return titel;

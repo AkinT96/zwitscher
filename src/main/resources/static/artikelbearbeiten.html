@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,10 +13,9 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="artikel.css">
     <link rel="stylesheet" href="indexBackup.css">
-    <link rel="stylesheet" href="artikelerstellen.css">
+    <link rel="stylesheet" href="posts.css">
+    <link rel="stylesheet" href="bearbeiten.css">
 </head>
 
 <body>
@@ -28,64 +27,92 @@
      hx-target="#main"
      id="main">
 </div>
-<div hx-ext="client-side-templates,response-targets,json-enc"
-     hx-trigger="load"
-     hx-get="http://localhost:8080/artikel/2"
-     nunjucks-template="form-template"
-     hx-target="#formloader"
-     hx-target-4*="#formloader"
-     id="formloader">
-    hallo
-</div>
+
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
     {% include "templates/check-isAdmin.html" %}
 
-
     <header>
         <nav class="navigation">
             <a href="http://localhost:8080/home.html">Home</a>
+            {% if admin %}
 
+            <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel
+                erstellen</a>
+            <a href="benutzerliste.html"
+               style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
+
+            {% endif %}
+
+            <template id="logout-triggered">
+                <span>Tschüss {{ username }}</span>
+                {{ redirect("index.html", 500) }}
+            </template>
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout </button>
+                    hx-target="#logout" id="logout">Logout
+            </button>
         </nav>
-        {% if admin %}
 
-        <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
-        <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
-
-        {% endif %}
-
-        <template id="logout-triggered">
-            <span>Tschüss {{ username }}</span>
-            {{ redirect("index.html", 500) }}
-        </template>
     </header>
 
-
+    <div class=blogposts id="posts"
+         hx-get="http://localhost:8080/artikelkommentarliste"
+         hx-target="#posts"
+         hx-trigger="load"
+         nunjucks-template="artikel-template">
+    </div>
 
 </template>
-<template id="form-template">
-    <form hx-post="http://localhost:8080/artikel">
 
-        <div class="inputBox">
-        <label>Titel</label><br>
-        <input type="text" name="titel" id="titel" value="{{ titel }}"><br>
-        </div>
+<template id="artikel-template">
+    {% for artikel in artikelKommentarListe %}
+    <div class="posts">
+        <form hx-put="http://localhost:8080/artikel/{{artikel.id}}" nunjucks-template="redirect-template">
 
-        <label>Artikel Inhalt</label><br>
-        <textarea id="text" name="text"  rows="4" cols="50">
+            <div class="inputBox2">
+                <label>Titel</label><br>
+                <textarea  name="titel"  rows="1" cols="100" >
+                {{ artikel.titel }}
+                </textarea>
+                <!--<input type="text" name="titel" id="titel" value="{{ artikel.titel }}"><br>-->
+            </div>
+
+            <label>Artikel Inhalt</label><br>
+            <textarea id="text" name="text"  rows="8" cols="100" >
+                {{ artikel.text }}
             </textarea>
-
-
-        <div class="inputBox">
-        <label>Url</label><br>
-        <input type="text" name="url" id="url" value="{{ url }}"><br>
-
+            <div class="inputBox2">
+                <label>Url</label><br>
+                <textarea name="url" rows="1" cols="100">{{ artikel.url }}</textarea>
+            </div>
+            <button type="submit">Artikel speichern</button>
+        </form>
+        <div class="delete-button" id="delete-button-{{artikel.id}}">
+            <button hx-delete="http://localhost:8080/artikel/{{ artikel.id }}" nunjucks-template="redirect-template"
+             hx-trigger="click" hx-target="#delete-button-{{artikel.id}}">
+                Artikel löschen
+            </button>
         </div>
-        <button type="submit">Artikel speichern</button>
-    </form>
+
+        <!-- Die Kommentare -->
+        <div class="kommentar">
+            <h2>Kommentare: </h2>
+            {% for kommentar in artikel.kommentare %}
+            <div> <li>{{ kommentar.text }}  <i style="background-color: rgb(128,128,128)">  von {{ kommentar.user.username}}</i></li>
+                <button hx-delete="http://localhost:8080/kommentar/{{ kommentar.id }}"
+                        nunjucks-template="redirect-template"> Kommentar löschen </button>
+            </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+    {% endfor %}
 </template>
+<template id="redirect-template">
+    {{redirect('artikelbearbeiten.html')}}
+</template>
+
 </body>
 </html>
