@@ -89,4 +89,8 @@
     justify-self: center;
 }
 
+.trash {
+    justify-self: right;
+}
+
 

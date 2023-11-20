@@ -30,8 +30,7 @@
 
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
-
-
+    {{save('benutzer')}}
     <header>
         <nav class="navigation">
             <a href="http://localhost:8080/home.html">Home</a>
@@ -98,6 +97,15 @@
                 <button class="btnBenutzerUebersicht" type="submit">Kommentar abschicken</button>
             </form>
         </div>
+        {% if "{{load('benutzer').admin}}" %}
+
+        <div class="trash" id="trash">
+            <button hx-delete="http://localhost:8080/artikel/{{artikel.id}}"
+                     nunjucks-template="redirect-template">
+                Artikel löschen
+            </button>
+        </div>
+        {% endif %}
     </div>
     {% endfor %}
 </template>
