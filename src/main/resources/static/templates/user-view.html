@@ -1,19 +1,27 @@
-<div id="user-{{username}}">
-    <label class="labelText">{{ username }}</label>
-    <button class="btnBenutzerUebersicht"
+<div class="columcontainer" id="user-{{username}}">
+    <div class="column column4"><label> {{id}}</label></div>
+    <div class="column column1">  <label>{{ username }}</label></div>
+  <div class="column2 column">
+
+      <button
             hx-target="#user-{{username}}"
-            hx-patch="http://localhost:8080/setzeAlsAdmin/{{userid}}"
+            hx-patch="http://localhost:8080/setzeAlsAdmin/{{id}}"
             nunjucks-template="user-template"
             hx-vals='js:{"admin": ! {{admin}}}'
             hx-swap="outerHTML">
         {% if admin %}
         <span class="icon">
         <ion-icon size="large" name="person-add"></ion-icon>
+                 Adminrechte entziehen
             </span>
         {% else %}
         <span class="icon">
         <ion-icon size="large" name="person-remove"></ion-icon>
+                 Adminrechte vergeben
             </span>
         {% endif %}
-    </button>
+    </button></div>
+
+
+    <div class="column column3"></div>
 </div>
