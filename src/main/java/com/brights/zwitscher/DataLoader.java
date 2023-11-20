@@ -92,7 +92,7 @@ public class DataLoader implements ApplicationRunner {
         Artikel artikel6 = new Artikel();
         artikel6.setTitel("Die Bedeutung von Elektromobilität in Städten");
         artikel6.setText("In urbanen Zentren spielt Elektromobilität eine entscheidende Rolle bei der Reduzierung von Emissionen und dem Aufbau nachhaltiger Verkehrssysteme. Dieser Artikel untersucht, wie Elektrofahrzeuge dazu beitragen können, die Luftqualität in Städten zu verbessern, und welche Herausforderungen es bei der Integration dieser Technologie in städtische Umgebungen gibt.");
-        artikel6.setUrl("https://mittlerer-niederrhein.ihk.de/de/media/grafiken/standortpolitik/elektrofahrzeug-artikel2.jpeg");
+        artikel6.setUrl("https://images.t3n.de/news/wp-content/uploads/2019/11/Grafik-E-Auto-Laden-Elektroauto-Ladesaule-Shutterstock.jpg?class=hero");
         artikel6.setUser(user5);
         artikelRepository.save(artikel6);
 
