@@ -35,11 +35,13 @@
 
     <header>
         <nav class="navigation">
-            <a href="http://localhost:8080/home.html">Home</a>
+            <a href="http://localhost:8080/home.html">Start</a>
             <a href="http://localhost:8080/posts.html">Forum</a>
             {% if admin %}
 
-            <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
+            <a class="nav-link special-link"
+               href="benutzerliste.html"
+               style="color: #d94200; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
 
             {% endif %}
 
@@ -49,7 +51,7 @@
             </template>
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout </button>
+                    hx-target="#logout" id="logout">Ausloggen</button>
         </nav>
 
     </header>
