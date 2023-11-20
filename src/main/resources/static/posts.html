@@ -97,11 +97,12 @@
                 <button class="btnBenutzerUebersicht" type="submit">Kommentar abschicken</button>
             </form>
         </div>
-        {% if "{{load('benutzer').admin}}" %}
 
+        {% if "{{load('benutzer').admin}}" %}
         <div class="trash" id="trash">
-            <button hx-delete="http://localhost:8080/artikel/{{artikel.id}}"
-                     nunjucks-template="redirect-template">
+            <button id="trash-button" type="submit" hx-delete="http://localhost:8080/artikel/{{ artikel.id }}"
+                    nunjucks-template="redirect-template"
+                    hx-target="#trash-button">
                 Artikel löschen
             </button>
         </div>
