@@ -75,7 +75,7 @@
 
         <div class="post-inhalt">
             <div class="titel">{{ artikel.titel }}</div>
-            <div class="datum"> erstellt am {{ artikel.erstelltAm }}</div>
+            <div class="datum"> <i style="color: #d0d0d0"> erstellt am {{ artikel.erstelltAm }}</i></div>
             <div>{{ artikel.text }}</div>
         </div>
 
@@ -84,7 +84,7 @@
         <div class="kommentar">
             <h2>Kommentare: </h2>
             {% for kommentar in artikel.kommentare %}
-            <div> <li>{{ kommentar.text }}  <i> geschrieben von {{ kommentar.user.username}}</i></li></div>
+            <div> <li>{{ kommentar.text }}  <i style="background-color: rgb(128,128,128)">  von {{ kommentar.user.username}}</i></li></div>
 
             {% endfor %}
         </div>
