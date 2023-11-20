@@ -13,10 +13,10 @@ public class ArtikelKommentarDTO {
     private String titel;
     private String url;
     private User user;
-    private String erstelltAm;
+    private LocalDateTime erstelltAm;
     private List<Kommentar> kommentare;
 
-    public ArtikelKommentarDTO(Long id, String text, String titel, String url, User user, String erstelltAm) {
+    public ArtikelKommentarDTO(Long id, String text, String titel, String url, User user, LocalDateTime erstelltAm) {
         this.id = id;
         this.text = text;
         this.titel = titel;
@@ -58,11 +58,11 @@ public class ArtikelKommentarDTO {
         this.url = url;
     }
 
-    public String getErstelltAm() {
+    public LocalDateTime getErstelltAm() {
         return erstelltAm;
     }
 
-    public void setErstelltAm(String erstelltAm) {
+    public void setErstelltAm(LocalDateTime erstelltAm) {
         this.erstelltAm = erstelltAm;
     }
 

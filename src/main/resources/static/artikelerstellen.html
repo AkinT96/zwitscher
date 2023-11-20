@@ -14,7 +14,6 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
     <script src="templates/javascript-helpers.js"></script>
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="artikel.css">
     <link rel="stylesheet" href="indexBackup.css">
     <link rel="stylesheet" href="artikelerstellen.css">
 </head>
@@ -32,20 +31,6 @@
 <template id="main-template">
     {% include "templates/check-session-invalid.html" %}
     {% include "templates/check-isAdmin.html" %}
-    {% include "templates/navbar.html" %}
-
-    <h1></h1>
-    <p> <strong>Willkommen {{ username }}</strong></p>
-    <hr>
-
-    <form hx-post="http://localhost:8080/artikel">
-    <label>Titel</label><br>
-    <input type="text" name="titel" id="titel"><br>
-    <label>Artikel Inhalt</label><br>
-    <input type="text" name="text" id="text" class="artikelbox"><br>
-    <label>Url</label><br>
-    <input type="text" name="url" id="url"><br>
-    <button type="submit">Artikel speichern</button>
 
 
     <header>
