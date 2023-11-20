@@ -23,6 +23,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #262626;
+    width: 1050px;
+    border-radius: 30px;
 }
 
 .wilkommensTxt{
@@ -36,11 +39,11 @@
     margin-bottom: 40px;
 }
 
-.formAutoBox  h1{
+.wilkommensTxt  h1{
     font-size: 2em;
 }
 
-.formAutoBox p {
+.wilkommensTxt p {
     display: flex;
 }
 
