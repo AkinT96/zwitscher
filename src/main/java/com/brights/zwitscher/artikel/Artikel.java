@@ -23,13 +23,15 @@ public class Artikel {
     private String text;
     @Column(columnDefinition="TEXT")
     private String url;
-    @OneToMany(mappedBy="artikel", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "artikel")
+    //@OrderBy("erstelltAm ASC")
     private List<Kommentar> kommentare;
     @CreationTimestamp
     @Column(name ="erstelltAm", nullable = false,updatable = false)
     private LocalDateTime erstelltAm;
 
-    public Artikel(User user, String titel, String text, String url, LocalDateTime erstelltAm) {
+    public Artikel(long id, User user, String titel, String text, String url, LocalDateTime erstelltAm) {
+        this.id = id;
         this.user = user;
         this.titel = titel;
         this.text = text;
