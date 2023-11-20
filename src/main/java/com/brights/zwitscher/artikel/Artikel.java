@@ -23,7 +23,7 @@ public class Artikel {
     private String text;
     @Column(columnDefinition="TEXT")
     private String url;
-    @OneToMany(mappedBy = "artikel")
+    @OneToMany(mappedBy = "artikel", cascade = CascadeType.ALL)
     //@OrderBy("erstelltAm ASC")
     private List<Kommentar> kommentare;
     @CreationTimestamp
