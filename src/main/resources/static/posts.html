@@ -100,10 +100,11 @@
 
         {% if "{{load('benutzer').admin}}" %}
         <div class="trash" id="trash">
-            <button id="trash-button" type="submit" hx-delete="http://localhost:8080/artikel/{{ artikel.id }}"
+
+            <button style="color: #222222;background-color: red " id="trash-button" type="submit" hx-delete="http://localhost:8080/artikel/{{ artikel.id }}"
                     nunjucks-template="redirect-template"
                     hx-target="#trash-button">
-                Artikel löschen
+              <b style="font-size: 20px">  Artikel löschen</b>
             </button>
         </div>
         {% endif %}
