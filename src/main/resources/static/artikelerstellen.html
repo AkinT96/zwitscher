@@ -36,22 +36,21 @@
     <header>
         <nav class="navigation">
             <a href="http://localhost:8080/home.html">Home</a>
+            {% if admin %}
 
+            <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
+
+            {% endif %}
+
+            <template id="logout-triggered">
+                <span>Tschüss {{ username }}</span>
+                {{ redirect("index.html", 500) }}
+            </template>
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
                     hx-target="#logout" id="logout">Logout </button>
         </nav>
-        {% if admin %}
 
-        <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
-        <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
-
-        {% endif %}
-
-        <template id="logout-triggered">
-            <span>Tschüss {{ username }}</span>
-            {{ redirect("index.html", 500) }}
-        </template>
     </header>
 
     <div class="formBoxLogin">
