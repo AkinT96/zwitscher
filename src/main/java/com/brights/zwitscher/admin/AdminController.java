@@ -1,6 +1,7 @@
 package com.brights.zwitscher.admin;
 
 import com.brights.zwitscher.artikel.Artikel;
+import com.brights.zwitscher.artikel.ArtikelDTO;
 import com.brights.zwitscher.artikel.ArtikelRepository;
 import com.brights.zwitscher.kommentare.KommentarRepository;
 import com.brights.zwitscher.user.User;
@@ -48,7 +49,7 @@ public class AdminController {
 
     // TODO check cascading when i delete the artikel, the comments should be removed too
     @DeleteMapping("/artikel/{artikelId}")
-    public void artikelLöschen (@PathVariable Long artikelId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional,
+    public Artikel artikelLöschen (@PathVariable Long artikelId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional,
                                 HttpServletResponse response){
 
         User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED,
@@ -57,7 +58,8 @@ public class AdminController {
         Artikel artikel = artikelRepository.findById(artikelId).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Artikel existiert nicht."));
         artikelRepository.delete(artikel);
-        response.setStatus(HttpServletResponse.SC_NO_CONTENT); // status code 204, best practice
+        return artikel;
+        //response.setStatus(HttpServletResponse.SC_NO_CONTENT); // status code 204, best practice
 
     }
 

@@ -40,7 +40,7 @@ public class KommentarController {
     }
 
     @DeleteMapping("/kommentar/{kommentarId}")
-    public void löscheKommentar (@ModelAttribute("sessionUser") Optional<User> sessionUserOptional,
+    public Kommentar löscheKommentar (@ModelAttribute("sessionUser") Optional<User> sessionUserOptional,
                                  @PathVariable Long kommentarId, HttpServletResponse response){
         User sessionUser = sessionUserOptional
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
@@ -48,7 +48,7 @@ public class KommentarController {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Kommentar existiert nicht."));
         if (kommentar.getUser().equals(sessionUser) || sessionUser.isAdmin()){
             kommentarRepository.delete(kommentar);
-            response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            return kommentar;
         }
         else{
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du hast keine Rechte den Kommentar zu löschen");

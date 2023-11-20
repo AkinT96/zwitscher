@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<template id="form-template">
+    <form hx-post="http://localhost:8080/artikel/{{artikel.id}}">
+
+        <div class="inputBox">
+            <label>Titel</label><br>
+            <input type="text" name="titel" id="titel" value="{{ titel }}"><br>
+        </div>
+
+        <label>Artikel Inhalt</label><br>
+        <textarea id="text" name="text"  rows="4" cols="50">
+            </textarea>
+        <div class="inputBox">
+            <label>Url</label><br>
+            <input type="text" name="url" id="url" value="{{ url }}"><br>
+
+        </div>
+        <button type="submit">Artikel speichern</button>
+    </form>
+</template>
+</body>
+</html>

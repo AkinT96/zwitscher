@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ArtikelKommentarListeDTO {
     private List<ArtikelKommentarDTO> artikelKommentarListe;
-
     public ArtikelKommentarListeDTO(List<ArtikelKommentarDTO> artikelKommentarListe) {
         this.artikelKommentarListe = artikelKommentarListe;
     }
