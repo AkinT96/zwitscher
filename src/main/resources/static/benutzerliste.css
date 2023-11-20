@@ -1,10 +1,5 @@
 body {
     margin: 20px;
-    background-image: url('hintergrund.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    font-family: 'Arial', sans-serif;
 }
 
 p {
@@ -64,3 +59,33 @@ span {
     text-align: center;
 }
 
+.columcontainer {
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+}
+
+.column {
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.column1 {
+    flex: 0 0 200px;
+    align-items: start;
+    color: #d0d0d0;
+}
+
+.column2 {
+    flex: 0 0 200px;
+    align-items: end;
+}
+
+.column3 {
+    flex: 0 0 300px;
+}
+.column4 {
+    flex: 0 0 50px;
+    color: #d0d0d0;
+}

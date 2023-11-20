@@ -16,6 +16,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="indexBackup.css">
+    <link rel="stylesheet" href="benutzerliste.css">
 </head>
 
 <body>
@@ -35,54 +36,55 @@
     <header>
         <nav class="navigation">
             <a href="http://localhost:8080/home.html">Home</a>
+            {% if admin %}
 
-            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
+            <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel
+                erstellen</a>
+
+            {% endif %}
+
+            <template id="logout-triggered">
+                <span>Tschüss {{ username }}</span>
+                {{ redirect("index.html", 500) }}
+            </template>            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout </button>
+                    hx-target="#logout" id="logout">Logout
+            </button>
         </nav>
-        {% if admin %}
 
-        <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
-
-        {% endif %}
-
-        <template id="logout-triggered">
-            <span>Tschüss {{ username }}</span>
-            {{ redirect("index.html", 500) }}
-        </template>
     </header>
 
 
-
-<div class="formBoxLogin">
-    <h2>Benutzerübersicht und Rechteverwaltung</h2>
-</div>
+    <div class="formBoxLogin">
+        <h2>Benutzerübersicht und Rechteverwaltung</h2>
+    </div>
     <hr>
 
-    <div class=center-container
-         hx-get="http://localhost:8080/benutzerliste"
-         hx-target="#posts"
-         hx-trigger="load"
-         nunjucks-template="artikel-template">
+    <div
+            hx-get="http://localhost:8080/benutzerliste"
+            hx-target="#posts"
+            hx-trigger="load"
+            nunjucks-template="artikel-template">
     </div>
-<div id="posts"></div>
+    <div id="posts"></div>
 
 </template>
 
-<template id="artikel-template">
-    {% for user in userListe %}
+    <template id="artikel-template">
+        {% for user in userListe %}
 
-  {% set username = user.username %}
-  {% set admin = user.admin %}
-  {% set userid = user.id %}
-  {% include "/templates/user-view.html" %}
+        {% set username = user.username %}
+        {% set admin = user.admin %}
+        {% set  id = user.id %}
+        {% include "/templates/user-view.html" %}
 
-    {% endfor %}
-</template>
+        {% endfor %}
+    </template>
 
-<template id="user-template">
-    {% include "/templates/user-view.html" %}
-</template>
+    <template id="user-template">
+
+        {% include "/templates/user-view.html" %}
+    </template>
 </body>
 </html>
 

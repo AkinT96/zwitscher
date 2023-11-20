@@ -29,30 +29,28 @@
 </div>
 
 <template id="main-template">
-  {% include "templates/check-session-invalid.html" %}
+    {% include "templates/check-session-invalid.html" %}
 
-  <header>
-    <nav class="navigation">
-      <a href="http://localhost:8080/home.html">Start</a>
+    <header>
+        <nav class="navigation">
+            <a href="http://localhost:8080/home.html">Home</a>
+            {% if admin %}
 
-      <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
-              nunjucks-template="logout-triggered"
-              hx-target="#logout" id="logout">Ausloggen
-      </button>
-    </nav>
-    {% if admin %}
+            <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
+            <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
 
-    <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel
-      erstellen</a>
-    <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
+            {% endif %}
 
-    {% endif %}
+            <template id="logout-triggered">
+                <span>Tschüss {{ username }}</span>
+                {{ redirect("index.html", 500) }}
+            </template>
+            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
+                    nunjucks-template="logout-triggered"
+                    hx-target="#logout" id="logout">Logout </button>
+        </nav>
+    </header>
 
-    <template id="logout-triggered">
-      <span>Tschüss {{ username }}</span>
-      {{ redirect("index.html", 500) }}
-    </template>
-  </header>
 
 
   <div class="allePosts">
@@ -73,6 +71,14 @@
         <div>
           <img src="images/auto1.jpg" alt="Auto mit Plane bedeckt"
                class="autoBild">
+
+
+
+
+    <div class="formBoxLogin">
+        <h2>
+Das Zuhause der Autoliebhaber
+        </h2>
         </div>
         <div class="autoTxtBox">
           <p>
@@ -109,20 +115,7 @@
             und erfahren Sie, was Audi für das beliebte
           </p>
         </div>
-      </div>
-      <hr>
-    </section>
-
-
-    <h3><label>The latest 3 Posts</label></h3>
-    <img class="rounded-box" src="images/car1.jpg" alt="ein Auto">
-    <img class="rounded-box" src="images/car2.jpg" alt="ein Auto">
-    <img class="rounded-box" src="images/car3.jpg" alt="ein Auto">
-    <div class="posts">
-      <a class="navigation" href="posts.html">
-        <button class="btnNavLogin">Forum</button>
-      </a>
-    </div>
+     
 
   </div>
 

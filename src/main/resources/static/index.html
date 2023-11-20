@@ -116,10 +116,6 @@
                     <input type="email" id="email" name="email" required>
                     <label>Email</label>
                 </div>
-
-
-
-
                 <button type="submit" class="btn">Registrieren</button>
                 <div class="loginRegister">
                     <p>Du besitzt bereits ein Konto?
@@ -132,14 +128,13 @@
         </div>
     </div>
 
-
 </template>
 
 <template id="login-successful">
     {% if error %}
     {{redirect("index.html",500)}}
     {% else %}
-    <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
+    <p style="color: #d0d0d0"><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
     {{redirect("home.html",500)}}
     {% endif %}
 </template>

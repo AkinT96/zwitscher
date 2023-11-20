@@ -21,31 +21,36 @@
     flex-direction: column;
     align-items: center;
 }
-.posts {
-    width : 60%;
-    border-radius: 10px;
-    margin : 20px;
-    padding: 10px;
-    background-color: #8f0202;
-    justify-content: center;
+.bildbox{
+    width: 30%;
 }
 
-.bild {
-    width: 100%;
+.bild{
+    max-height: 200px;
 }
+.posts {
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: row;
+    width : 80%;
+    border-radius: 10px;
+    border: 2px solid #ea0000;
+    margin : 30px;
+    padding: 60px;
+    background-color: black;
+    justify-content: center;
+    color: white;
+    opacity: 90%;
+}
+
 .post-inhalt {
-    border: 2px solid black;
+    width: 60%;
     display: flex;
     flex-direction: column;
-    background-color: gainsboro;
+    background-color: grey;
     justify-content: center;
+    padding: 5px;
   //  align-items: center;
-}
-
-.titelBox {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px;
 }
 
 .titel {
@@ -62,11 +67,16 @@
         scroll-padding-top: 100px;
         margin-top: 100px;
     }
-
+ .kommentar {
+     width: 90%;
+ }
+ .kommentarForm {
+     width: 90%;
+ }
 
 .btnBenutzerUebersicht {
     display: flex;
-    width: 20%;
+    width: 30%;
     border: 1px #222222 solid;
     outline: none;
     border-radius: 8px;
@@ -77,6 +87,10 @@
     justify-content: center;
     background: transparent;
     justify-self: center;
+}
+
+.trash {
+    justify-self: right;
 }
 
 
