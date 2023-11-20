@@ -134,7 +134,7 @@
     {% if error %}
     {{redirect("index.html",500)}}
     {% else %}
-    <p><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
+    <p style="color: #d0d0d0"><strong>{{ username }}</strong>, erfolgreich eingeloggt</p>
     {{redirect("home.html",500)}}
     {% endif %}
 </template>
