@@ -35,11 +35,11 @@
 
     <header>
         <nav class="navigation">
-            <a href="http://localhost:8080/home.html">Home</a>
+            <a href="http://localhost:8080/home.html">Start</a>
             <a href="http://localhost:8080/posts.html">Forum</a>
             {% if admin %}
 
-            <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel
+            <a class="nav-link special-link" href="artikelerstellen.html" style="color: #d94200; text-decoration: none; margin-right: 10px;">Artikel
                 erstellen</a>
 
             {% endif %}
@@ -47,20 +47,20 @@
             <template id="logout-triggered">
                 <span>Tschüss {{ username }}</span>
                 {{ redirect("index.html", 500) }}
-            </template>            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
+            </template>
+            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout
+                    hx-target="#logout" id="logout">Ausloggen
             </button>
         </nav>
 
     </header>
 
-
+    <div class="benutzerlisteBox">
     <div class="formBoxLogin">
         <h2>Benutzerübersicht und Rechteverwaltung</h2>
     </div>
     <hr>
-
     <div
             hx-get="http://localhost:8080/benutzerliste"
             hx-target="#posts"
@@ -68,6 +68,7 @@
             nunjucks-template="artikel-template">
     </div>
     <div id="posts"></div>
+    </div>
 
 </template>
 
