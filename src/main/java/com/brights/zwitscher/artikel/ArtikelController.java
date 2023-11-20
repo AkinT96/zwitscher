@@ -26,10 +26,12 @@ public class ArtikelController {
         this.userRepository = userRepository;
         this.kommentarRepository = kommentarRepository;
     }
+
     @GetMapping("/artikel/{artikelId}")
-    public Artikel artikelAusgeben(@PathVariable Long artikelId){
+    public Artikel artikelAusgeben(@PathVariable Long artikelId) {
         return artikelRepository.findById(artikelId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Artikel nicht gefunden"));
     }
+
     @GetMapping("/artikelliste")
     public ArtikelListeDTO artikelListeAusgeben() {
         List<Artikel> artikelListe = artikelRepository.findAllByOrderByErstelltAmDesc();
@@ -65,12 +67,10 @@ public class ArtikelController {
     }
 
     @PutMapping("/artikel/{artikelId}")
-    public Artikel artikelBearbeiten(@RequestBody ArtikelDTO artikelDTO, @PathVariable Long artikelId,
-                                     @ModelAttribute("sessionUser") Optional<User> sessionUserOptional){
+    public Artikel artikelBearbeiten(@RequestBody ArtikelDTO artikelDTO, @PathVariable Long artikelId, @ModelAttribute("sessionUser") Optional<User> sessionUserOptional) {
         User user = sessionUserOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logindaten sind nicht gültig."));
         if (!user.isAdmin()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Du bist kein Admin");
-        Artikel artikel = artikelRepository.findById(artikelId).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Artikel existiert nicht"));
+        Artikel artikel = artikelRepository.findById(artikelId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Der Artikel existiert nicht"));
         artikel.setText(artikelDTO.getText());
         artikel.setTitel(artikelDTO.getTitel());
         artikel.setUrl(artikelDTO.getUrl());
