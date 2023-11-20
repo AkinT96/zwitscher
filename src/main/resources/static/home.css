@@ -16,3 +16,65 @@
     margin: 20px;
     padding: 20px;
 }
+
+.allePosts{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wilkommensTxt{
+    color: #d0d0d0;
+    max-width: 900px;
+    margin-top: 20px;
+}
+
+.autoPost{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.formAutoBox  h1{
+    font-size: 2em;
+}
+
+.formAutoBox p {
+    display: flex;
+}
+
+.ueberschriftAutoBox {
+    color: #d0d0d0;
+}
+
+.ueberschriftAutoBox h3 {
+    font-size: 1.6em;
+    display: flex;
+    max-width: 900px;
+    align-items: center;
+}
+
+.ueberschriftAutoBox p {
+    display: flex;
+}
+
+.autoBox {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 900px;
+    margin-top: 25px;
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+    }
+}
+.autoBild{
+    width: 400px;
+}
+.autoTxtBox{
+    color: #d0d0d0;
+    width: 450px;
+    margin: 25px;
+}

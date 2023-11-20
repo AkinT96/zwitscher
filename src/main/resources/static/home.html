@@ -1,82 +1,135 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
 
-    <script src="https://unpkg.com/htmx.org@1.9.3"></script>
-    <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
-    <script src="https://unpkg.com/nunjucks@latest"></script>
-    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
-    <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
-    <script src="templates/javascript-helpers.js"></script>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="indexBackup.css">
+  <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+  <script src="https://unpkg.com/nunjucks@latest"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+  <script src="templates/javascript-helpers.js"></script>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="indexBackup.css">
 </head>
 
 <body>
 <div hx-ext="client-side-templates,response-targets,json-enc"
-      hx-trigger="load"
-      hx-get="http://localhost:8080/benutzer"
-      nunjucks-template="main-template"
-      hx-target-4*="#main"
-      hx-target="#main"
-      id="main">
+     hx-trigger="load"
+     hx-get="http://localhost:8080/benutzer"
+     nunjucks-template="main-template"
+     hx-target-4*="#main"
+     hx-target="#main"
+     id="main">
 </div>
 
 <template id="main-template">
-    {% include "templates/check-session-invalid.html" %}
+  {% include "templates/check-session-invalid.html" %}
 
-    <header>
-        <nav class="navigation">
-            <a href="http://localhost:8080/home.html">Home</a>
+  <header>
+    <nav class="navigation">
+      <a href="http://localhost:8080/home.html">Start</a>
 
-            <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
-                    nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout </button>
-        </nav>
-        {% if admin %}
+      <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
+              nunjucks-template="logout-triggered"
+              hx-target="#logout" id="logout">Ausloggen
+      </button>
+    </nav>
+    {% if admin %}
 
-        <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
-        <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
+    <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel
+      erstellen</a>
+    <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
 
-        {% endif %}
+    {% endif %}
 
-        <template id="logout-triggered">
-            <span>Tschüss {{ username }}</span>
-            {{ redirect("index.html", 500) }}
-        </template>
-    </header>
+    <template id="logout-triggered">
+      <span>Tschüss {{ username }}</span>
+      {{ redirect("index.html", 500) }}
+    </template>
+  </header>
 
 
-
-    <div class="formBoxLogin">
-        <h2>
-Das Zuhause der Autoliebhaber
-        </h2>
+  <div class="allePosts">
+      <div class="wilkommensTxt">
+        <h1 style="color: #d0d0d0">Willkommen bei Deiner Autoblog-Website</h1>
+        <p>Die neuesten Nachrichten, Artikel und Geschichten aus der Welt der Autos!</p>
+      </div>
+      <hr>
+    <section>
+      <div class="autoPost">
+      <div class="ueberschriftAutoBox">
+        <h3>Günstige Elektroautos: Diese Modelle unter 25.000 € sind geplant</h3>
+        <p>
+          Neuheiten vom Citroen e-C3 über den Renault Twingo Legend bis zum Nachfolger des Smart EQ Fortwo
+        </p>
+      </div>
+      <div class="autoBox">
+        <div>
+          <img src="images/auto1.jpg" alt="Auto mit Plane bedeckt"
+               class="autoBild">
         </div>
-
-    <hr>
-    <div class="formBoxLogin">
-
-        <h3><label>The latest 3 Posts</label> </h3>
-        <img class="rounded-box" src="images/car1.jpg" alt="ein Auto">
-        <img class="rounded-box" src="images/car2.jpg" alt="ein Auto">
-        <img class="rounded-box" src="images/car3.jpg" alt="ein Auto">
-        <div class="posts">
-            <a class="navigation" href="posts.html"><button class="btnNavLogin">Forum</button></a>
+        <div class="autoTxtBox">
+          <p>
+            Zu den schon sehr konkreten Ankündigungen gehört der Citroen e-C3.
+            Das erste europäische Auto auf Basis der zuvor unbekannten Smart Car
+            Platform soll gerade mal 23.300 Euro kosten – inklusive Mehrwertsteuer
+            und vor Förderung, wohlgemerkt. Übrigens: Schon im Mai gab es Gerüchte
+            zu einem Elektro-Neuling für 23.000 Euro.
+          </p>
         </div>
+      </div>
+      <hr>
+      </div>
+    </section>
 
+    <section>
+      <div class="ueberschriftAutoBox">
+        <h3>Audi Q7 (2025): Ein erster Blick auf die nächste Generation</h3>
+        <p>
+          Die kräftigeren Kotflügel des frühen Prototyps lassen auf eine breitere Spuren schließen ...
+        </p>
+      </div>
+      <div class="autoBox">
+        <div>
+          <img src="images/auto2.jpg" alt="Auto mit Plane bedeckt"
+               class="autoBild">
+        </div>
+        <div class="autoTxtBox">
+          <p>
+            Entdecken Sie exklusive Einblicke in die nächste Generation des Audi Q7!
+            Unsere neuesten Bilder aus den Alpen zeigen nicht nur ein überarbeitetes Äußeres,
+            sondern auch spannende Innovationen im Innenraum. Wird der Q7 seinen Platz in der
+            Luxus-SUV-Liga behaupten können? Tauchen Sie ein in die Zukunft des Fahrzeugdesigns
+            und erfahren Sie, was Audi für das beliebte
+          </p>
+        </div>
+      </div>
+      <hr>
+    </section>
+
+
+    <h3><label>The latest 3 Posts</label></h3>
+    <img class="rounded-box" src="images/car1.jpg" alt="ein Auto">
+    <img class="rounded-box" src="images/car2.jpg" alt="ein Auto">
+    <img class="rounded-box" src="images/car3.jpg" alt="ein Auto">
+    <div class="posts">
+      <a class="navigation" href="posts.html">
+        <button class="btnNavLogin">Forum</button>
+      </a>
     </div>
+
+  </div>
 
 </template>
 
 <template id="rank-result-template">
-    Hey, {{load('user').username}}, you are the <strong>{{rank}}th</strong> user on this site.
+  Hey, {{load('user').username}}, you are the <strong>{{rank}}th</strong> user on this site.
 </template>
 </body>
 </html>
