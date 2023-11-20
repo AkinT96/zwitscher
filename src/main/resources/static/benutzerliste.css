@@ -91,3 +91,12 @@ span {
     flex: 0 0 50px;
     color: #d0d0d0;
 }
+
+.benutzerlisteBox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #262626;
+    border-radius: 30px;
+    padding: 60px;
+}

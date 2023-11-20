@@ -48,6 +48,7 @@
                 <span>Tschüss {{ username }}</span>
                 {{ redirect("index.html", 500) }}
             </template>
+
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
                     hx-target="#logout" id="logout">Logout

@@ -1,4 +1,3 @@
-[19:14] Edward Fetzer
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,11 +29,14 @@
     {% include "templates/check-session-invalid.html" %}
     <header>
         <nav class="navigation">
-            <a href="http://localhost:8080/home.html">Home</a>
+            <a href="http://localhost:8080/home.html">Start</a>
+            <a href="http://localhost:8080/posts.html">Forum</a>
             {% if admin %}
 
-            <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
-            <a href="benutzerliste.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
+            <a class="nav-link special-link"
+               href="artikelerstellen.html" style="color: #d94200; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
+            <a class="nav-link special-link"
+               href="benutzerliste.html" style="color: #d94200; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
 
             {% endif %}
 
@@ -44,7 +46,7 @@
             </template>
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout </button>
+                    hx-target="#logout" id="logout">Ausloggen</button>
         </nav>
     </header>
 
@@ -52,8 +54,8 @@
 
     <div class="allePosts">
         <div class="wilkommensTxt">
-            <h1 style="color: #d0d0d0">Willkommen bei Deiner Autoblog-Website</h1>
-            <p>Die neuesten Nachrichten, Artikel und Geschichten aus der Welt der Autos!</p>
+            <h1 style="color: #d0d0d0; text-align: center">Willkommen bei Carspot</h1>
+            <p style="text-align: center">Die neuesten Nachrichten, Artikel und Geschichten aus der Welt der Autos!</p>
         </div>
         <hr>
         <section>
@@ -106,13 +108,30 @@
             </div>
             <hr>
         </section>
-
-
-        <div class="posts">
-            <a class="navigation" href="posts.html">
-                <button class="btnNavLogin">Forum</button>
-            </a>
-        </div>
+        <section>
+            <div class="ueberschriftAutoBox">
+                <h3>Tesla Model 3 im TÜV-Report ganz vorne – bei den Mängeln</h3>
+                <p>
+                    Auto fällt bei der Hauptuntersuchung überdurchschnittlich oft durch – auch wegen einer Tesla-Besonderheit
+                </p>
+            </div>
+            <div class="autoBox">
+                <div>
+                    <img src="images/auto3.jpg" alt="Auto mit Plane bedeckt"
+                         class="autoBild">
+                </div>
+                <div class="autoTxtBox">
+                    <p>
+                        Schockierende Zahlen im aktuellen TÜV-Report: Das Tesla Model 3 landet auf dem letzten Platz
+                        bei den zwei- bis dreijährigen Autos! Mit einer "erheblichen Mängel"-Quote von 14,7 Prozent
+                        überrascht es sogar Experten. Doch warum schneidet das Model 3 so schlecht ab? Hohe Laufleistung,
+                        fehlende Service-Intervalle und typische E-Auto-Probleme spielen eine Rolle. Erfahren Sie mehr
+                        über die Hintergründe und vergleichen Sie, wie andere Elektroautos abschneiden!
+                    </p>
+                </div>
+            </div>
+            <hr>
+        </section>
     </div>
 </template>
 <template id="rank-result-template">

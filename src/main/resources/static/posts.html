@@ -34,13 +34,16 @@
 
     <header>
         <nav class="navigation">
-            <a href="http://localhost:8080/home.html">Home</a>
+            <a href="http://localhost:8080/home.html">Start</a>
             {% if admin %}
 
-            <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel
+            <a class="nav-link special-link"
+               href="artikelerstellen.html"
+               style="color: #d94200; text-decoration: none; margin-right: 10px;">Artikel
                 erstellen</a>
-            <a href="benutzerliste.html"
-               style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
+            <a class="nav-link special-link"
+               href="benutzerliste.html"
+               style="color: #d94200; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
 
             {% endif %}
 
@@ -50,12 +53,11 @@
             </template>
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout
+                    hx-target="#logout" id="logout">Ausloggen
             </button>
         </nav>
 
     </header>
-    <hr>
     <div class=blogposts id="posts"
          hx-get="http://localhost:8080/artikelkommentarliste"
          hx-target="#posts"
@@ -69,7 +71,7 @@
     {% for artikel in artikelKommentarListe %}
     <div class="posts">
         <div class="bildbox">
-            <img class="bild"
+            <img style="border-radius: 15px" class="bild"
                  src="{{ artikel.url }}"
                  alt=""/>
         </div>
