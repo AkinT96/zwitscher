@@ -55,12 +55,7 @@
             {{ redirect("index.html", 500) }}
         </template>
     </header>
-
-
-
     <hr>
-
-
     <div class=blogposts id="posts"
          hx-get="http://localhost:8080/artikelkommentarliste"
          hx-target="#posts"
@@ -68,48 +63,43 @@
          nunjucks-template="artikel-template">
     </div>
 
-
-
 </template>
 
-
 <template id="artikel-template">
+    {% for artikel in artikelKommentarListe %}
     <div class="posts">
-        {% for artikel in artikelKommentarListe %}
-
-
-        <div class="post-inhalt">
+        <div class="bildbox">
             <img class="bild"
                  src="{{ artikel.url }}"
                  alt=""/>
+        </div>
 
-            <div class="titelBox">
-                <div class="titel">{{ artikel.titel }}</div>
-            </div>
-            <div class="datum">{{ artikel.erstelltAm }}</div>
+        <div class="post-inhalt">
+            <div class="titel">{{ artikel.titel }}</div>
+            <div class="datum"> erstellt am {{ artikel.erstelltAm }}</div>
             <div>{{ artikel.text }}</div>
-
         </div>
 
 
         <!-- Die Kommentare -->
-        <div id="Kommentar-{{ artikel.id }}">
+        <div class="kommentar">
+            <h2>Kommentare: </h2>
             {% for kommentar in artikel.kommentare %}
-            <div> {{ kommentar.text }}  <i>{{ kommentar.user.username}}</i></div>
+            <div> <li>{{ kommentar.text }}  <i> geschrieben von {{ kommentar.user.username}}</i></li></div>
 
             {% endfor %}
         </div>
-        <form hx-post="http://localhost:8080/kommentar/{{ artikel.id }}"
-              nunjucks-template="redirect-template">
-            <textarea id="text" name="text" rows="4" cols="50">
-
-            </textarea>
-            <button class="btnBenutzerUebersicht" type="submit">Kommentar abschicken</button>
-            <hr>
-        </form>
-        {% endfor %}
-
+        <div class="kommentarForm">
+            <form hx-post="http://localhost:8080/kommentar/{{ artikel.id }}"
+                  nunjucks-template="redirect-template">
+                <Label><b> Kommentar hinzufügen: </b></Label><br>
+                <textarea id="text" name="text" rows="2" cols="50">
+                </textarea>
+                <button class="btnBenutzerUebersicht" type="submit">Kommentar abschicken</button>
+            </form>
+        </div>
     </div>
+    {% endfor %}
 </template>
 <template id="redirect-template">
     {{redirect('posts.html')}}
