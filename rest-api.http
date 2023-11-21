@@ -1,4 +1,4 @@
-
+### Passwort nicht identisch
 POST http://localhost:8080/registriere
 Content-Type:application/json
 
@@ -10,7 +10,7 @@ Content-Type:application/json
 }
 
 
-###
+### Passwort zu kurz
 
 POST http://localhost:8080/registriere
 Content-Type:application/json
@@ -22,7 +22,7 @@ Content-Type:application/json
   "email": "abd@def.de"
 }
 
-###
+### Benutzername zu lang
 
 POST http://localhost:8080/registriere
 Content-Type:application/json
@@ -34,7 +34,8 @@ Content-Type:application/json
   "email": "abd@def.de"
 }
 
-###
+### Mehrere Fehlermeldungen
+
 POST http://localhost:8080/registriere
 Content-Type:application/json
 
@@ -44,6 +45,18 @@ Content-Type:application/json
   "passwordBestätigung": "12345",
   "email": "abdcdef.de"
 }
+
+
+### User nicht in der Datenbank
+POST http://localhost:8080/login
+Content-Type:application/json
+
+{
+  "username": "IchBinEinHackerOhneKonto",
+  "password": "12345"
+}
+
+
 
 ###
 GET http://localhost:8080/artikelliste
@@ -70,14 +83,7 @@ GET http://localhost:8080/setzealsadmin/3
 GET http://localhost:8080/kommentare/1
 
 
-### Login user
-POST http://localhost:8080/login
-Content-Type:application/json
 
-{
-"username": "adam",
-"password": "12345"
-}
 
 ### Logout user
 POST http://localhost:8080/logout

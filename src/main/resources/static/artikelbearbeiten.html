@@ -34,27 +34,24 @@
 
     <header>
         <nav class="navigation">
-            <a href="http://localhost:8080/home.html">Home</a>
+            <a href="http://localhost:8080/home.html">Start</a>
+            <a href="http://localhost:8080/posts.html">Forum</a>
             {% if admin %}
 
-            <a href="artikelerstellen.html" style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Artikel
-                erstellen</a>
-            <a href="benutzerliste.html"
-               style="color: #94a7ae; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
-
+            <a class="nav-link special-link"
+               href="artikelerstellen.html" style="color: #d94200; text-decoration: none; margin-right: 10px;">Artikel erstellen</a>
+            <a class="nav-link special-link"
+               href="benutzerliste.html" style="color: #d94200; text-decoration: none; margin-right: 10px;">Benutzerliste</a>
             {% endif %}
 
             <template id="logout-triggered">
                 <span>Tschüss {{ username }}</span>
                 {{ redirect("index.html", 500) }}
             </template>
-
             <button class="btnNavLogin" hx-post="http://localhost:8080/logout"
                     nunjucks-template="logout-triggered"
-                    hx-target="#logout" id="logout">Logout
-            </button>
+                    hx-target="#logout" id="logout">Ausloggen</button>
         </nav>
-
     </header>
 
     <div class=blogposts id="posts"
@@ -87,12 +84,12 @@
                 <label>Url</label><br>
                 <textarea name="url" rows="1" cols="100">{{ artikel.url }}</textarea>
             </div>
-            <button type="submit">Artikel speichern</button>
+            <button style="background-color: #262626; color: #d0d0d0;padding: 3px;font-size: 15px" type="submit"><b>Artikel speichern</b></button>
         </form>
         <div class="delete-button" id="delete-button-{{artikel.id}}">
-            <button hx-delete="http://localhost:8080/artikel/{{ artikel.id }}" nunjucks-template="redirect-template"
-             hx-trigger="click" hx-target="#delete-button-{{artikel.id}}">
-                Artikel löschen
+            <button style="background-color: red;padding: 3px;font-size: 15px" hx-delete="http://localhost:8080/artikel/{{ artikel.id }}" nunjucks-template="redirect-template"
+             hx-trigger="click" hx-target="#delete-button-{{artikel.id}}" hx-confirm="Sind sie sicher?">
+             <b>Artikel löschen</b>
             </button>
         </div>
 
@@ -101,8 +98,8 @@
             <h2>Kommentare: </h2>
             {% for kommentar in artikel.kommentare %}
             <div> <li>{{ kommentar.text }}  <i style="background-color: rgb(128,128,128)">  von {{ kommentar.user.username}}</i></li>
-                <button hx-delete="http://localhost:8080/kommentar/{{ kommentar.id }}"
-                        nunjucks-template="redirect-template"> Kommentar löschen </button>
+                <button style="background-color: red;padding: 3px;font-size: 15px" hx-delete="http://localhost:8080/kommentar/{{ kommentar.id }}"
+                        nunjucks-template="redirect-template" hx-confirm="Sind sie sicher?"><b>Kommentar löschen</b> </button>
             </div>
 
             {% endfor %}
